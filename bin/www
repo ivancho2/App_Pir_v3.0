@@ -16,6 +16,18 @@ var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
+ * Create MQTT server.
+ */
+
+var client_mqtt=require('../config_services/mqtt');
+
+/**
+ * Create Sockets service.
+ */
+
+var io=require('../config_services/io_socket');
+
+/**
  * Create HTTP server.
  */
 
@@ -88,3 +100,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+module.exports=server;
