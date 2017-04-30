@@ -15,7 +15,10 @@
     "express": "~4.14.1",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.2"
+    "serve-favicon": "~2.3.2",
+    "dateformat":"^2.0.0",
+    "implements": "^0.1.0",
+    "bcryptjs": "^2.4.3"
   },
   "scripts": {
     "start" : "nodemon ./bin/www"

@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Index
+    script(src='/socket.io/socket.io.js')
+    script(src='http://code.jquery.com/jquery-latest.min.js')
+    script(src='javascripts/main.js')
+    link(rel='stylesheet', href='stylesheets/css.css', type='text/css', media='all')
+  body
+    #Registro
+      center
+        h1 DashBoard de Administración
+        h2 Registrar Modulo
+        form#form_index(onsubmit='')
+          label Codigo de Registro ESP8266:
+          input#ESP8266_CODE(type='text', placeholder='ESP8266_CHIPID()', required='')
+          input(type='submit', value='Agregar')
+        br
+        br
+    div
+      center
+        div
+          h2 DashBoard
+          table(border='true')
+            caption
+            thead
+              tr#tr_title_table
+                th#th_title_table(colspan='2')
+                  b Modulos registrados
+              tr
+                th Codigo de CHIP
+                th Estado
+            tbody#tbody_DasgBoard
+        div
+          h1 Log Debug (Server)
+          textarea#tx_log(cols='80', rows='10', readonly='')
+  footer
+    center
+      a(href='/t') Ir a Main

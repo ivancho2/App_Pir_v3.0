@@ -22,16 +22,20 @@ app.set('port', port);
 var client_mqtt=require('../config_services/mqtt');
 
 /**
- * Create Sockets service.
- */
-
-var io=require('../config_services/io_socket');
-
-/**
  * Create HTTP server.
  */
 
 var server = http.createServer(app);
+
+/**
+ * Create Sockets service.
+ */
+
+var io = require('socket.io')(server);
+// io.on('connection', function(client){
+//   client.on('event', function(data){});
+//   client.on('disconnect', function(){});
+// });
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -100,4 +104,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-module.exports=server;
+module.exports=io;

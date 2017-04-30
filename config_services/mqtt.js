@@ -4,6 +4,7 @@ var client_mqtt = mqtt.connect([{
     port: 1883
 }]);
 client_mqtt.on('connect', function() {
+    
 /*
 +   Suscribirse a todos los Modulos registrados y activos en el sistema
 +       -consultarlos en la base de datos y almacenarlos en "array_registered"
@@ -27,7 +28,7 @@ client_mqtt.on('connect', function() {
 +    //         client_mqtt.subscribe(i);
 +    //     }
 +    // });
-
++
 */
  // ejemplo de suscripcion
     client_mqtt.subscribe('ESP8266_120215');
