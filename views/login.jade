@@ -41,16 +41,21 @@ html(lang='en')
                   .panel-heading
                     h3.panel-title Registre sus Credenciales de acceso:
                   .panel-body
+                    .col-lg-12
+                      if info != undefined && info.length
+                        .alert.alert-warning
+                          strong Ups!
+                          |  #{info}
                     form(role='form',action='/Login', method='post')
                       .col-lg-12
                         label Usuario:
                         .form-group.input-group
                           span.input-group-addon @
-                          input.form-control(type='text', placeholder='Username',required='')
+                          input.form-control(name='usuario',type='text', placeholder='Username',required='')
                         label Password:
                         .form-group.input-group
                           span.input-group-addon P
-                          input.form-control(type='password', placeholder='Password',required='')
+                          input.form-control(name='password',type='password', placeholder='Password',required='')
                         .col-lg-6
                           button.btn.btn-success(type='submit') Ingresar
                         .col-lg-6

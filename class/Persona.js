@@ -52,7 +52,7 @@ function Persona() {
 				conn.end();
 				return null;
 			} else {
-				console.log('Persona insertada correctamente.');
+				console.log('Persona Consultada correctamente.');
 				console.log(row);
 				conn.end();
 				return this; //persona

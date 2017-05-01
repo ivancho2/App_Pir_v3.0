@@ -5,6 +5,11 @@ block content
     .col-lg-12
       h1.page-header
         | Registro de Usuarios
+    .col-lg-12
+      if info != undefined && info.length
+        .alert.alert-warning
+          strong Ups!
+          |  #{info}
   .row
     .col-lg-12
       .panel.panel-green

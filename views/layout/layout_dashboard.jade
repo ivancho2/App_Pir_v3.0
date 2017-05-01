@@ -37,100 +37,37 @@ html(lang='en')
         ul.nav.navbar-right.top-nav
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
-              i.fa.fa-envelope
-              b.caret
-            ul.dropdown-menu.message-dropdown
-              li.message-preview
-                a(href='#')
-                  .media
-                    span.pull-left
-                      img.media-object(src='http://placehold.it/50x50', alt='')
-                    .media-body
-                      h5.media-heading
-                        strong #{Nombre}
-                      p.small.text-muted
-                        i.fa.fa-clock-o
-                        |  Yesterday at 4:32 PM
-                      p Lorem ipsum dolor sit amet, consectetur...
-              li.message-preview
-                a(href='#')
-                  .media
-                    span.pull-left
-                      img.media-object(src='http://placehold.it/50x50', alt='')
-                    .media-body
-                      h5.media-heading
-                        strong #{Nombre}
-                      p.small.text-muted
-                        i.fa.fa-clock-o
-                        |  Yesterday at 4:32 PM
-                      p Lorem ipsum dolor sit amet, consectetur...
-              li.message-preview
-                a(href='#')
-                  .media
-                    span.pull-left
-                      img.media-object(src='http://placehold.it/50x50', alt='')
-                    .media-body
-                      h5.media-heading
-                        strong #{Nombre}
-                      p.small.text-muted
-                        i.fa.fa-clock-o
-                        |  Yesterday at 4:32 PM
-                      p Lorem ipsum dolor sit amet, consectetur...
-              li.message-footer
-                a(href='#') Read All New Messages
-          li.dropdown
-            a.dropdown-toggle(href='#', data-toggle='dropdown')
               i.fa.fa-bell
               b.caret
             ul.dropdown-menu.alert-dropdown
               li
                 a(href='#')
-                  | Alert Name
-                  span.label.label-default Alert Badge
+                  | ESP8266_12543
+                  span.label.label-warning Alert PIR
               li
                 a(href='#')
-                  | Alert Name
-                  span.label.label-primary Alert Badge
+                  | ESP8266_12543
+                  span.label.label-warning Alert PIR
               li
                 a(href='#')
-                  | Alert Name
-                  span.label.label-success Alert Badge
-              li
-                a(href='#')
-                  | Alert Name
-                  span.label.label-info Alert Badge
-              li
-                a(href='#')
-                  | Alert Name
-                  span.label.label-warning Alert Badge
-              li
-                a(href='#')
-                  | Alert Name
-                  span.label.label-danger Alert Badge
+                  | ESP8266_12543
+                  span.label.label-warning Alert PIR
               li.divider
               li
                 a(href='#') View All
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
               i.fa.fa-user
-              |  #{Nombre}
+              |  #{Persona[0].nombres_Persona}
               b.caret
             ul.dropdown-menu
-              li
-                a(href='#')
-                  i.fa.fa-fw.fa-user
-                  |  Profile
-              li
-                a(href='#')
-                  i.fa.fa-fw.fa-envelope
-                  |  Inbox
               li
                 a(href='#')
                   i.fa.fa-fw.fa-gear
                   |  Settings
               li.divider
               li
-                a(href='#')
+                a(href='/../Logout')
                   i.fa.fa-fw.fa-power-off
                   |  Log Out
         // Sidebar Menu Items - These collapse to the responsive navigation menu on small screens
