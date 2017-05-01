@@ -1,0 +1,50 @@
+extends ../layout/layout_dashboard
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | Registro de Usuarios
+  .row
+    .panel.panel-green
+      .panel-heading
+        h3.panel-title Registrar Usuario:
+      .panel-body
+        form(role='form')
+          .col-lg-6
+            .form-group
+              label Identificacion:
+              input.form-control(placeholder='(Solo numeros)',required='',onkeypress='return justNumbers(event);')
+            .form-group
+              label Nombres:
+              input.form-control(placeholder='Nombre(s)', required='')
+            .form-group
+              label Apellidos:
+              input.form-control(placeholder='Apellido(s)', required='')
+          .col-lg-6
+            label Usuario:
+            .form-group.input-group
+              span.input-group-addon @
+              input.form-control(type='text', placeholder='Username',required='')
+            label Password:
+            .form-group.input-group
+              span.input-group-addon P
+              input.form-control(type='text', placeholder='Password',required='')
+            .form-group
+              label Rol de Usuario
+              .radio
+                label
+                  input#optionsRadios1(type='radio', name='optionsRadios', value='1', checked='')
+                  | Administrador
+              .radio
+                label
+                  input#optionsRadios2(type='radio', name='optionsRadios', value='2')
+                  | Jefe de Seguridad
+              .radio
+                label
+                  input#optionsRadios3(type='radio', name='optionsRadios', value='3')
+                  | Auxiliar de Seguridad
+            button.btn.btn-success(type='submit') Confirmar y Enviar
+            button.btn.btn-warning(type='reset')
+              i.fa.fa-edit
+              |   Limpiar Todo

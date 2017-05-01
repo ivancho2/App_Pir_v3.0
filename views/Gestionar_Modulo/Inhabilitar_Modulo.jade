@@ -4,9 +4,9 @@ block content
   .row
     .col-lg-12
       h1.page-header
-        | Consultar de Usuarios
+        | Inhabilitar de Usuarios
   .row
-    .col-lg-12
+    .col-lg-6
       .panel.panel-green
         .panel-heading
           h3.panel-title Datos del Usuario a Consultar:
@@ -23,11 +23,11 @@ block content
                 i.fa.fa-edit
                 |   Limpiar Todo
   .row
-    .col-lg-6
-      .panel.panel-green
-        .panel-heading
-          h3.panel-title Usuario Consultado:
-        .panel-body
+    .panel.panel-green
+      .panel-heading
+        h3.panel-title Usuario Consultado:
+      .panel-body
+        form(role='form')
           .col-lg-6
             fieldset(disabled='')
             .form-group
@@ -48,3 +48,4 @@ block content
             .form-group
               label(for='disabledSelect') Rol de Usuario
               input#disabledInput.form-control(type='text', disabled='',value='#{Rol_Usuario}')
+            button.btn.btn-success(type='submit') Confirmar e Inhabilitar Usuario

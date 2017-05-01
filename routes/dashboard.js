@@ -3,22 +3,34 @@ var router = express.Router();
 var controllers = require('.././controllers');// reconoce el index solo?
 
 // middleware that is specific to this router
-router.use(function timeLog(req, res, next) {
+router.use(function(req, res, next) {
   console.log('Time: ', Date.now());
+  console.log('Debe ser usuario autenticado para entrar a esta Vista');
   next();
 });
-router.get('/',controllers.Dashboard_Controller.getRegistrar_Usuario);
 
-router.get('/Registrar_Usuario', controllers.Dashboard_Controller.getRegistrar_Usuario);
+router.get('/',controllers.Dashboard_Controller.home);
+//Gestionar_Usuario
+router.get('/Registrar_Usuario', controllers.Usuario_Controller.getRegistrar_Usuario);
+router.get('/Consultar_Usuario', controllers.Usuario_Controller.getConsultar_Usuario);
+router.get('/Modificar_Usuario', controllers.Usuario_Controller.getModificar_Usuario);
+router.get('/Inhabilitar_Usuario', controllers.Usuario_Controller.getInhabilitar_Usuario);
 
-router.get('/Consultar_Usuario', function(req, res) {
-  res.send('Consultar_Usuario');
-});
-router.get('/Modificar_Usuario', function(req, res) {
-  res.send('Modificar_Usuario');
-});
-router.get('/Inhabilitar_Usuario', function(req, res) {
-  res.send('Inhabilitar_Usuario');
-});
+router.post('/Registrar_Usuario', controllers.Usuario_Controller.postRegistrar_Usuario);
+router.post('/Consultar_Usuario', controllers.Usuario_Controller.postConsultar_Usuario);
+router.put('/Modificar_Usuario', controllers.Usuario_Controller.putModificar_Usuario);
+router.delete('/Inhabilitar_Usuario', controllers.Usuario_Controller.deleteInhabilitar_Usuario);
+
+//Gestionar_Modulos
+  router.get('/Registrar_Modulo', controllers.Modulo_Controller.getRegistrar_Modulo);
+  router.get('/Consultar_Modulo', controllers.Modulo_Controller.getConsultar_Modulo);
+  router.get('/Modificar_Modulo', controllers.Modulo_Controller.getModificar_Modulo);
+  router.get('/Inhabilitar_Modulo', controllers.Modulo_Controller.getInhabilitar_Modulo);
+
+  router.post('/Registrar_Modulo', controllers.Modulo_Controller.postRegistrar_Modulo);
+  router.post('/Consultar_Modulo', controllers.Modulo_Controller.postConsultar_Modulo);
+  router.put('/Modificar_Modulo', controllers.Modulo_Controller.putModificar_Modulo);
+  router.delete('/Inhabilitar_Modulo', controllers.Modulo_Controller.deleteInhabilitar_Modulo);
+
 
 module.exports = router;

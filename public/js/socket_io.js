@@ -5,7 +5,7 @@ $(function() {
 	$socket = io.connect('/', {
 		'forceNew': true
 	});
-  $socket.on('connect', function() {
+	$socket.on('connect', function() {
 		console.log('--- conectado a socket.io');
 	});
 
@@ -53,22 +53,22 @@ $(function() {
 				$.each(itemj, function(k, itemk) {
 					// console.log(itemk);
 					html += "\n" +
-						"<tr>\n" +
-						"<td>" + j + "</td>\n" +
-						"<td>";
+					"<tr>\n" +
+					"<td>" + j + "</td>\n" +
+					"<td>";
 					if (itemk == 'true') {
 						html += `<label class="switch">
-							<input id="` + j + `" type="checkbox" checked="" class="inputdemo" onchange="changeState(this);">
-							<div class="slider round"></div>
+						<input id="` + j + `" type="checkbox" checked="" class="inputdemo" onchange="changeState(this);">
+						<div class="slider round"></div>
 						</label>`;
 					} else {
 						html += `<label class="switch w3-margin-right">
-								  <input id="` + j + `" type="checkbox" class="inputdemo" onchange="changeState(this);">
-								  <div class="slider round"></div>
-								</label>`;
+						<input id="` + j + `" type="checkbox" class="inputdemo" onchange="changeState(this);">
+						<div class="slider round"></div>
+						</label>`;
 					}
 					html += "</td>\n" +
-						"</tr>";
+					"</tr>";
 				});
 			});
 		});
@@ -98,4 +98,12 @@ function changeState(element) {
 			}
 		});
 	});
+}
+function justNumbers(e)
+{
+	var keynum = window.event ? window.event.keyCode : e.which;
+	if ((keynum == 8) || (keynum == 46))
+	return true;
+	
+	return /\d/.test(String.fromCharCode(keynum));
 }

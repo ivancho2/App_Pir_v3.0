@@ -1,0 +1,66 @@
+extends ../layout/layout_dashboard
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | Modificar de Usuarios
+  .row
+    .col-lg-6
+      .panel.panel-green
+        .panel-heading
+          h3.panel-title Consultar datos del usuario a Modificar:
+        .panel-body
+          form(role='form')
+            .col-lg-12
+              .form-group
+                label Identificacion:
+                input.form-control(placeholder='(Solo numeros)',required='',onkeypress='return justNumbers(event);')
+            .col-lg-6
+              button.btn.btn-success(type='submit') Confirmar y Consultar Datos
+            .col-lg-6
+              button.btn.btn-warning(type='reset')
+                i.fa.fa-edit
+                |   Limpiar Todo
+  .row
+    .panel.panel-green
+      .panel-heading
+        h3.panel-title Modificar Usuario:
+      .panel-body
+        form(role='form')
+          .col-lg-6
+            .form-group
+              label Nombres:
+              input.form-control(placeholder='Nombre(s)', required='')
+            .form-group
+              label Apellidos:
+              input.form-control(placeholder='Apellido(s)', required='')
+            .form-group
+              label Usuario:
+              .form-group.input-group
+                span.input-group-addon @
+                input.form-control(type='text', placeholder='Username',required='')
+              label Password:
+              .form-group.input-group
+                span.input-group-addon P
+                input.form-control(type='text', placeholder='Password',required='')
+          .col-lg-6
+            .form-group
+              label Rol de Usuario
+              .radio
+                label
+                  input#optionsRadios1(type='radio', name='optionsRadios', value='1')
+                  | Administrador
+              .radio
+                label
+                  input#optionsRadios2(type='radio', name='optionsRadios', value='2')
+                  | Jefe de Seguridad
+              .radio
+                label
+                  input#optionsRadios3(type='radio', name='optionsRadios', value='3')
+                  | Auxiliar de Seguridad
+          .col-lg-6
+            button.btn.btn-success(type='submit') Confirmar y Enviar
+            button.btn.btn-warning(type='reset')
+              i.fa.fa-edit
+              |   Limpiar Todo
