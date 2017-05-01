@@ -3,15 +3,18 @@ var router = express.Router();
 var controllers = require('.././controllers');// reconoce el index solo?
 
 /* GET home page. */
-router.get('/', controllers.Dashboard_Controller.getIndex);
+// router.get('/dashboard', controllers.Dashboard_Controller.getIndex);
+// router.post('/dashboard', controllers.Dashboard_Controller.Post_Consultar_Persona); //genera error
 
-router.get('/index', function(req, res, next) {
-  res.render('index', { title: 'Express My APP PIR', ms:'My Dashboard' });
-});
 
-router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard');
+router.get('/', function(req, res, next) {
+  res.render('index', { Nombre: 'Jorge Ivan Niño'});
 });
+// router.get('/Gestionar_Usuario', controllers.Dashboard_Controller.getIndex);
+
+// router.get('/dashboard', function(req, res, next) {
+//   res.render('dashboard');
+// });
 
 /*
 router.get('/personas', controllers.personacontroller.getPersonas);

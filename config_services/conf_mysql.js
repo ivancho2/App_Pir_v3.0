@@ -1,13 +1,10 @@
-var mysql = require('mysql');
-
 var config = {
 	host: 'localhost',
 	user: 'root',
 	password: 'root',
 	database: 'app_pir'
 };
-console.log('coneccion mysql creada');
-module.exports = mysql.createConnection(config);
+module.exports = config;
 
 /// estilo de conexion a la base de datos implementando esta clase
 /*

@@ -15,33 +15,50 @@ function Persona() {
 	this.Registrar_Persona = function(int_identificacion, str_nombres, str_apellidos, str_usuario, str_password, int_rol_usuario) {
 
 		ObjP = {
-			identificacion_Persona: 1,
-			nombres_Persona: 'Jorge Ivan',
-			apellidos_Persona: 'Niño Monje',
-			usuario_Persona: 'ivancho',
-			password_Persona: 'ivancho',
-			Rol_Persona_id_Rol_Persona: 1
+			identificacion_Persona: int_identificacion,
+			nombres_Persona: str_nombres,
+			apellidos_Persona: str_apellidos,
+			usuario_Persona: str_usuario,
+			password_Persona: str_password,
+			Rol_Persona_id_Rol_Persona: int_rol_usuario
 		};
 		// console.log(ObjP);
-
-		var conn = require('../config_services/conn_mysql');
-		// var db = mysql.createConnection(config);
+		var conf_mysql = require('../config_services/conf_mysql');
+		var conn=mysql.createConnection(conf_mysql);
 		conn.connect();
 		conn.query('INSERT INTO persona SET ?', ObjP, function(err, rows, fields) {
 			if (err) {
-				throw err;
-				console.log('Error en query'+err);
+				console.log('error en la consulta');
+				conn.end();
+			} else {
+				console.log('Persona insertada correctamente.');
+				conn.end();
 			}
-			conn.end();
 		});
-		console.log('require completado');
-		console.log('Persona insertada correctamente.');
-		return true; // boolean
+		return true;
 	};
 
 	this.Consultar_Persona = function(int_identificacion) {
+		ObjP = {
+			identificacion_Persona: int_identificacion
+		};
 		console.log('consult person');
-		return this; //persona
+		var conf_mysql = require('../config_services/conf_mysql');
+		var conn=mysql.createConnection(conf_mysql);
+		conn.connect();
+		conn.query('SELECT * FROM persona WHERE ? LIMIT 1', ObjP, function(err, rows, fields) {
+			if (err) {
+				console.log('error en la consulta');
+				conn.end();
+				return null;
+			} else {
+				console.log('Persona insertada correctamente.');
+				console.log(row);
+				conn.end();
+				return this; //persona
+			}
+		});
+
 	};
 	this.Modificar_Persona = function(int_identificacion, str_nombres, str_apellidos, str_usuario, str_password, str_rol_usuario) {
 		console.log('Modificar_Persona');
