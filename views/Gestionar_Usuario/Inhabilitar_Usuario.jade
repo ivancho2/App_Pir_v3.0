@@ -5,6 +5,16 @@ block content
     .col-lg-12
       h1.page-header
         | Inhabilitar de Usuarios
+    if info_error != undefined && info_error.length
+      .col-lg-12
+        .alert.alert-warning
+          strong Alert!
+          |  #{info_error}
+    if info_success != undefined && info_success.length
+      .col-lg-12
+        .alert.alert-success
+          strong Alert!
+          |  #{info_success}
   .row
     .col-lg-6
       .panel.panel-green

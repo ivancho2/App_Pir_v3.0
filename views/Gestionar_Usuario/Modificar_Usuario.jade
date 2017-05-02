@@ -4,18 +4,28 @@ block content
   .row
     .col-lg-12
       h1.page-header
-        | Modificar de Usuarios
+        | Modificar Usuarios
+    if info_error != undefined && info_error.length
+      .col-lg-12
+        .alert.alert-warning
+          strong Alert!
+          |  #{info_error}
+    if info_success != undefined && info_success.length
+      .col-lg-12
+        .alert.alert-success
+          strong Alert!
+          |  #{info_success}
   .row
     .col-lg-6
       .panel.panel-green
         .panel-heading
           h3.panel-title Consultar datos del usuario a Modificar:
         .panel-body
-          form(role='form')
+          form(role='form', action='Modificar_Usuario', method='post')
             .col-lg-12
               .form-group
                 label Identificacion:
-                input.form-control(placeholder='(Solo numeros)',required='',onkeypress='return justNumbers(event);')
+                input.form-control(placeholder='(Solo numeros)',required='',onkeypress='return justNumbers(event);',name='Identificacion')
             .col-lg-6
               button.btn.btn-success(type='submit') Confirmar y Consultar Datos
             .col-lg-6
@@ -28,37 +38,40 @@ block content
         .panel-heading
           h3.panel-title Modificar Usuario:
         .panel-body
-          form(role='form')
+          form(role='form', action='Modificar_Usuario', method='put')
             .col-lg-6
               .form-group
+                label(for='disabledSelect') Identificacion:
+                input#disabledInput.form-control(type='text', disabled='',value='#{identificacion_Persona}')
+              .form-group
                 label Nombres:
-                input.form-control(placeholder='Nombre(s)', required='')
+                input.form-control(placeholder='Nombre(s)', required='',name='Nombres',value='#{nombres_Persona}')
               .form-group
                 label Apellidos:
-                input.form-control(placeholder='Apellido(s)', required='')
+                input.form-control(placeholder='Apellido(s)', required='',name='Apellidos',value='#{apellidos_Persona}')
               .form-group
                 label Usuario:
                 .form-group.input-group
                   span.input-group-addon @
-                  input.form-control(type='text', placeholder='Username',required='')
+                  input.form-control(type='text', placeholder='Username',required='',name='Usuario',value='#{usuario_Persona}')
                 label Password:
                 .form-group.input-group
                   span.input-group-addon P
-                  input.form-control(type='text', placeholder='Password',required='')
+                  input.form-control(type='text', placeholder='Password',required='',name='Password')
             .col-lg-6
               .form-group
                 label Rol de Usuario
                 .radio
                   label
-                    input#optionsRadios1(type='radio', name='optionsRadios', value='1')
+                    input#optionsRadios1(type='radio', name='optionsRadios', value='1', checked = Rol_Persona_id_Rol_Persona=='1')
                     | Administrador
                 .radio
                   label
-                    input#optionsRadios2(type='radio', name='optionsRadios', value='2')
+                    input#optionsRadios2(type='radio', name='optionsRadios', value='2', checked = Rol_Persona_id_Rol_Persona=='2')
                     | Jefe de Seguridad
                 .radio
                   label
-                    input#optionsRadios3(type='radio', name='optionsRadios', value='3')
+                    input#optionsRadios3(type='radio', name='optionsRadios', value='3', checked = Rol_Persona_id_Rol_Persona=='3')
                     | Auxiliar de Seguridad
             .col-lg-6
               button.btn.btn-success(type='submit') Confirmar y Enviar

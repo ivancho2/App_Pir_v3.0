@@ -15,9 +15,9 @@ router.use(function(req, res, next) {
   }
 });
 router.get('/',function(req, res, next) {
-  var Persona = req.session.Persona;
-  res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: Persona});
+  res.render('dashboard_home', {Usuario: req.session.Persona});
 });
+
 //Gestionar_Usuario
 router.get('/Registrar_Usuario', controllers.Usuario_Controller.getRegistrar_Usuario);
 router.get('/Consultar_Usuario', controllers.Usuario_Controller.getConsultar_Usuario);
@@ -26,6 +26,7 @@ router.get('/Inhabilitar_Usuario', controllers.Usuario_Controller.getInhabilitar
 
 router.post('/Registrar_Usuario', controllers.Usuario_Controller.postRegistrar_Usuario);
 router.post('/Consultar_Usuario', controllers.Usuario_Controller.postConsultar_Usuario);
+router.post('/Modificar_Usuario', controllers.Usuario_Controller.postModificar_Usuario);
 router.put('/Modificar_Usuario', controllers.Usuario_Controller.putModificar_Usuario);
 router.delete('/Inhabilitar_Usuario', controllers.Usuario_Controller.deleteInhabilitar_Usuario);
 

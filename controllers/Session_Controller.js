@@ -34,15 +34,15 @@ module.exports = {
     } else {
       console.log('error en la interface IPersona');
     }
-},
-Logout: function(req, res, next) {
-  //destruir credenciales
-  if (typeof req.session.Persona!='undefined') {
-    console.log('Session Destruida');
-    req.session.Persona=null;
+  },
+  Logout: function(req, res, next) {
+    //destruir credenciales
+    if (typeof req.session.Persona!='undefined') {
+      console.log('Session Destruida');
+      req.session.Persona=null;
+    }
+    // req.session.usuario=null;
+    // req.session.password=null;
+    res.redirect('../Login');
   }
-  // req.session.usuario=null;
-  // req.session.password=null;
-  res.redirect('../Login');
-}
 }

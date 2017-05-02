@@ -5,39 +5,44 @@ block content
     .col-lg-12
       h1.page-header
         | Registro de Usuarios
-    .col-lg-12
-      if info != undefined && info.length
+    if info_error != undefined && info_error.length
+      .col-lg-12
         .alert.alert-warning
-          strong Ups!
-          |  #{info}
+          strong Alert!
+          |  #{info_error}
+    if info_success != undefined && info_success.length
+      .col-lg-12
+        .alert.alert-success
+          strong Alert!
+          |  #{info_success}
   .row
     .col-lg-12
       .panel.panel-green
         .panel-heading
           h3.panel-title Registrar Usuario:
         .panel-body
-          form(role='form')
+          form(role='form',action='Registrar_Usuario', method='post')
             .col-lg-6
               .form-group
                 label Identificacion:
-                input.form-control(placeholder='(Solo numeros)',required='',onkeypress='return justNumbers(event);')
+                input.form-control(placeholder='(Solo numeros)',required='',onkeypress='return justNumbers(event);',name='Identificacion')
               .form-group
                 label Nombres:
-                input.form-control(placeholder='Nombre(s)', required='')
+                input.form-control(placeholder='Nombre(s)', required='',name='Nombres')
               .form-group
                 label Apellidos:
-                input.form-control(placeholder='Apellido(s)', required='')
+                input.form-control(placeholder='Apellido(s)', required='',name='Apellidos')
             .col-lg-6
               label Usuario:
               .form-group.input-group
                 span.input-group-addon @
-                input.form-control(type='text', placeholder='Username',required='')
+                input.form-control(type='text', placeholder='Username',required='',name='Usuario')
               label Password:
               .form-group.input-group
                 span.input-group-addon P
-                input.form-control(type='text', placeholder='Password',required='')
+                input.form-control(type='text', placeholder='Password',required='',name='Password')
               .form-group
-                label Rol de Usuario
+                label Rol de Usuario:
                 .radio
                   label
                     input#optionsRadios1(type='radio', name='optionsRadios', value='1', checked='')

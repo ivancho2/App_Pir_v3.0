@@ -58,13 +58,13 @@ html(lang='en')
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
               i.fa.fa-user
-              |  #{Persona[0].nombres_Persona}
+              |  #{Usuario.nombres_Persona} #{Usuario.apellidos_Persona}
               b.caret
             ul.dropdown-menu
               li
                 a(href='#')
                   i.fa.fa-fw.fa-gear
-                  |  Settings
+                  |  Rol de Usuario [#{Usuario.Rol_Persona_id_Rol_Persona}]
               li.divider
               li
                 a(href='/../Logout')
@@ -77,54 +77,58 @@ html(lang='en')
               a(href='/DashBoard/#')
                 i.fa.fa-fw.fa-dashboard
                 |  Panel Principal
-            li
-              a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Usuarios')
-                i.fa.fa-fw.fa-edit
-                |  Gestionar Usuarios
-                i.fa.fa-fw.fa-caret-down
-              ul#li_Gestionar_Usuarios.collapse
-                li
-                  a(href='Registrar_Usuario') Registrar Usuario
-                li
-                  a(href='Consultar_Usuario') Consultar Usuario
-                li
-                  a(href='Modificar_Usuario') Modificar Usuario
-                li
-                  a(href='Inhabilitar_Usuario') Inhabilitar Usuario
-            li
-              a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Modulos')
-                i.fa.fa-fw.fa-edit
-                |  Gestionar Modulos
-                i.fa.fa-fw.fa-caret-down
-              ul#li_Gestionar_Modulos.collapse
-                li
-                  a(href='Registrar_Modulo') Registrar Modulo
-                li
-                  a(href='Consultar_Modulo') Consultar Modulo
-                li
-                  a(href='Modificar_Modulo') Modificar Modulo
-                li
-                  a(href='Inhabilitar_Modulo') Inhabilitar Modulo
-            li
-              a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Grupo_Modulos')
-                i.fa.fa-fw.fa-edit
-                |  Gestionar Grupos de Modulos
-                i.fa.fa-fw.fa-caret-down
-              ul#li_Gestionar_Grupo_Modulos.collapse
-                li
-                  a(href='#') Registrar Grupo
-                li
-                  a(href='#') Consultar Grupo
-                li
-                  a(href='#') Modificar Grupo
-                li
-                  a(href='#') Inhabilitar Grupo
+            if Usuario.Rol_Persona_id_Rol_Persona<=2
+              li
+                a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Usuarios')
+                  i.fa.fa-fw.fa-edit
+                  |  Gestionar Usuarios
+                  i.fa.fa-fw.fa-caret-down
+                ul#li_Gestionar_Usuarios.collapse
+                  if Usuario.Rol_Persona_id_Rol_Persona==1
+                    li
+                      a(href='Registrar_Usuario') Registrar Usuario
+                  li
+                    a(href='Consultar_Usuario') Consultar Usuario
+                  if Usuario.Rol_Persona_id_Rol_Persona==1
+                    li
+                      a(href='Modificar_Usuario') Modificar Usuario
+                    li
+                      a(href='Inhabilitar_Usuario') Inhabilitar Usuario
+            if Usuario.Rol_Persona_id_Rol_Persona<=2
+              li
+                a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Modulos')
+                  i.fa.fa-fw.fa-edit
+                  |  Gestionar Modulos
+                  i.fa.fa-fw.fa-caret-down
+                ul#li_Gestionar_Modulos.collapse
+                  li
+                    a(href='Registrar_Modulo') Registrar Modulo
+                  li
+                    a(href='Consultar_Modulo') Consultar Modulo
+                  li
+                    a(href='Modificar_Modulo') Modificar Modulo
+                  li
+                    a(href='Inhabilitar_Modulo') Inhabilitar Modulo
+            if Usuario.Rol_Persona_id_Rol_Persona<=2
+              li
+                a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Grupo_Modulos')
+                  i.fa.fa-fw.fa-edit
+                  |  Gestionar Grupos de Modulos
+                  i.fa.fa-fw.fa-caret-down
+                ul#li_Gestionar_Grupo_Modulos.collapse
+                  li
+                    a(href='#') Registrar Grupo
+                  li
+                    a(href='#') Consultar Grupo
+                  li
+                    a(href='#') Modificar Grupo
+                  li
+                    a(href='#') Inhabilitar Grupo
             li
               a(href='charts.html')
                 i.fa.fa-fw.fa-bar-chart-o
                 |  Ver Historial de Reportes
         // /.navbar-collapse
-
       #page-wrapper
         .container-fluid
           // Page Heading
