@@ -9,11 +9,14 @@ module.exports = {
       var conf_mysql = require('../config_services/conf_mysql');
       var conn=mysql.createConnection(conf_mysql);
       conn.connect();
+      console.log(req.body.usuario,req.body.password);
       conn.query('SELECT * FROM persona WHERE usuario_Persona=? and password_Persona=? LIMIT 1', [req.body.usuario,req.body.password], function(err, rows, fields) {
         if (err) {
           console.log('error en la consulta');
+          console.log(err);
           conn.end();
-          return null;
+          req.flash('info', 'Hubo un error en la consulta!')
+          res.redirect('/Login');
         } else {
           console.log('Persona Consultada correctamente.');
           console.log(rows);
