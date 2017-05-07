@@ -38,11 +38,12 @@ block content
         .panel-heading
           h3.panel-title Modificar Usuario:
         .panel-body
-          form(role='form', action='Modificar_Usuario', method='put')
+          form(role='form', action='PUT_Modificar_Usuario', method='post')
             .col-lg-6
               .form-group
                 label(for='disabledSelect') Identificacion:
-                input#disabledInput.form-control(type='text', disabled='',value='#{identificacion_Persona}')
+                input.form-control(type='hidden', name='Identificacion', value='#{identificacion_Persona}')
+                input#disabledInput.form-control(disabled='', name='Identificacion',value='#{identificacion_Persona}')
               .form-group
                 label Nombres:
                 input.form-control(placeholder='Nombre(s)', required='',name='Nombres',value='#{nombres_Persona}')
@@ -74,7 +75,8 @@ block content
                     input#optionsRadios3(type='radio', name='optionsRadios', value='3', checked = Rol_Persona_id_Rol_Persona=='3')
                     | Auxiliar de Seguridad
             .col-lg-6
-              button.btn.btn-success(type='submit') Confirmar y Enviar
+              button.btn.btn-success(type='submit')
+                |  Confirmar y Enviar
               button.btn.btn-warning(type='reset')
                 i.fa.fa-edit
                 |   Limpiar Todo

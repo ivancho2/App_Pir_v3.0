@@ -79,10 +79,9 @@ $(function() {
 })
 
 function changeState(element) {
-	// console.log(element);
+	console.log(element);
 	// console.log(element.id);
 	// console.log(array_registered);
-
 	$.each(array_registered, function(i, item) { // i = key,  item = value
 		$.each(item, function(j, itemj) {
 			if (j == element.id) {
@@ -104,6 +103,6 @@ function justNumbers(e)
 	var keynum = window.event ? window.event.keyCode : e.which;
 	if ((keynum == 8) || (keynum == 46))
 	return true;
-	
+
 	return /\d/.test(String.fromCharCode(keynum));
 }

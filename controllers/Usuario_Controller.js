@@ -15,7 +15,6 @@ module.exports = {
 	getInhabilitar_Usuario: function(req, res, next) {
 		res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona});
 	},
-
 	postRegistrar_Usuario: function(req, res, next) {
 		var Class_Persona = require('../class/Persona');
 		var Interface_Persona = require('../interfaces/IPersona');
@@ -70,14 +69,14 @@ module.exports = {
 	postModificar_Usuario: function(req, res, next) {
 		var Class_Persona = require('../class/Persona');
 		var Interface_Persona = require('../interfaces/IPersona');
-		console.log('getIndex function');
+		// console.log('getIndex function');
 		var Persona = new Class_Persona();
 		var IPersona = new Interface_Persona();
 		if (implements(Persona, IPersona) == true) { //a la clase Persona implementeme la interface IPersona
-			console.log('true implementr persona DashBoard');
+			// console.log('true implementr persona DashBoard');
 			// console.log(req.body.Identificacion,req.body.Nombres,req.body.Apellidos,req.body.Usuario,req.body.Password,req.body.optionsRadios);
 			Persona.Consultar_Persona(req.body.Identificacion).then(resultado => {
-				console.log("Albums: ", resultado);
+				// console.log("Albums: ", resultado);
 				if (resultado!=null) {
 					resultado.Usuario=req.session.Persona;
 					resultado.info_success = 'Persona Consultada correctamente!';
@@ -85,7 +84,7 @@ module.exports = {
 					// console.log('true en Consultar return');
 					res.render('Gestionar_Usuario/Modificar_Usuario', resultado);
 				}else{
-					console.log('else en Consultar return');
+					// console.log('else en Consultar return');
 					res.render('Gestionar_Usuario/Modificar_Usuario', {Usuario: req.session.Persona, info_error : 'Error Query al Consultar el Usuario'});
 				}
 			});
@@ -97,19 +96,19 @@ module.exports = {
 	putModificar_Usuario: function(req, res, next) {
 		var Class_Persona = require('../class/Persona');
 		var Interface_Persona = require('../interfaces/IPersona');
-		console.log('getIndex function');
+		// console.log('putModificar_Usuario function');
 		var Persona = new Class_Persona();
 		var IPersona = new Interface_Persona();
 		if (implements(Persona, IPersona) == true) { //a la clase Persona implementeme la interface IPersona
-			console.log('true implementr persona DashBoard');
+			// console.log('true implementr persona DashBoard');
 			// console.log(req.body.Identificacion,req.body.Nombres,req.body.Apellidos,req.body.Usuario,req.body.Password,req.body.optionsRadios);
 			Persona.Modificar_Persona(req.body.Identificacion,req.body.Nombres, req.body.Apellidos,req.body.Usuario,req.body.Password,req.body.optionsRadios).then(resultado => {
-				console.log("Albums: ",resultado);
+				// console.log("Albums: ", resultado);
 				if (resultado.boolean) {
-					console.log('true en registro return');
-					res.render('Gestionar_Usuario/Modificar_Usuario', {Usuario: req.session.Persona, info_success : 'Persona Registrada correctamente!'});
+					// console.log('true en registro return');
+					res.render('Gestionar_Usuario/Modificar_Usuario', {Usuario: req.session.Persona, info_success : 'Persona Modificada correctamente!'});
 				}else{
-					console.log('else en registro return');
+					// console.log('else en registro return');
 					res.render('Gestionar_Usuario/Modificar_Usuario', {Usuario: req.session.Persona, info_error : 'Error Query al Insertar el Nuevo Usuario'});
 				}
 			});
@@ -117,10 +116,57 @@ module.exports = {
 			// console.log('error en la interface IPersona');
 			res.render('error', {Usuario: req.session.Persona,info_error : 'Error en implementacion de Interface' });
 		}
-		res.render('Gestionar_Usuario/Modificar_Usuario', {Usuario: req.session.Persona});
 	},
-
+	postInhabilitar_Usuario: function(req, res, next) {
+		var Class_Persona = require('../class/Persona');
+		var Interface_Persona = require('../interfaces/IPersona');
+		console.log('getIndex function');
+		var Persona = new Class_Persona();
+		var IPersona = new Interface_Persona();
+		if (implements(Persona, IPersona) == true) { //a la clase Persona implementeme la interface IPersona
+			console.log('true implementr persona DashBoard');
+			console.log(req.body.Identificacion);
+			Persona.Consultar_Persona(req.body.Identificacion).then(resultado => {
+				console.log("Albums: ", resultado);
+				if (resultado!=null) {
+					resultado.Usuario=req.session.Persona;
+					resultado.info_success = 'Persona Consultada correctamente!';
+					// console.log("Albums2: ", resultado);
+					// console.log('true en Consultar return');
+					res.render('Gestionar_Usuario/Inhabilitar_Usuario', resultado);
+				}else{
+					console.log('else en Consultar return');
+					res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona, info_error : 'Error Query al Consultar el Usuario'});
+				}
+			});
+		} else {
+			// console.log('error en la interface IPersona');
+			res.render('error', {Usuario: req.session.Persona,info_error : 'Error en implementacion de Interface' });
+		}
+	},
 	deleteInhabilitar_Usuario: function(req, res, next) {
-		res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona});
+		console.log('Delete Usuario');
+		var Class_Persona = require('../class/Persona');
+		var Interface_Persona = require('../interfaces/IPersona');
+		// console.log('putModificar_Usuario function');
+		var Persona = new Class_Persona();
+		var IPersona = new Interface_Persona();
+		if (implements(Persona, IPersona) == true) { //a la clase Persona implementeme la interface IPersona
+			// console.log('true implementr persona DashBoard');
+			console.log(req.body.Identificacion);
+			Persona.Inhabilitar_Persona(req.body.Identificacion).then(resultado => {
+				console.log("Albums: ", resultado);
+				if (resultado.boolean) {
+					// console.log('true en registro return');
+					res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona, info_success : 'Persona Inhabilitada correctamente!'});
+				}else{
+					// console.log('else en registro return');
+					res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona, info_error : 'Error Query al Inhabilitar el Usuario, El Usuario probablemente no existe!'});
+				}
+			});
+		} else {
+			// console.log('error en la interface IPersona');
+			res.render('error', {Usuario: req.session.Persona,info_error : 'Error en implementacion de Interface' });
+		}
 	}
 };

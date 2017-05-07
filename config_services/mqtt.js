@@ -1,10 +1,10 @@
 var mqtt = require('mqtt');
 var client_mqtt = mqtt.connect([{
-    host: 'localhost',
+    host: '127.0.0.1',
     port: 1883
 }]);
 client_mqtt.on('connect', function() {
-    
+
 /*
 +   Suscribirse a todos los Modulos registrados y activos en el sistema
 +       -consultarlos en la base de datos y almacenarlos en "array_registered"
@@ -62,6 +62,6 @@ function printer(argument) {
     // io.sockets.emit('log', argument.toString());
 }
 
- //lo exporto para poder usarlo en otras clases y 
+ //lo exporto para poder usarlo en otras clases y
  //suscribir o des-suscribirme a topicos
- module.exports=client_mqtt; 
+ module.exports=client_mqtt;

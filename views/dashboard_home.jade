@@ -1,5 +1,101 @@
 extends layout/layout_dashboard
 
 block content
-  h1 home DashBoard
-  p Welcome to home DashBoard
+  h1 DashBoard
+  p Pantalla Principal
+  .row
+    .col-lg-6
+      h2 Modulos
+      .table-responsive
+        table.table.table-bordered.table-hover.table-striped
+          thead
+            tr.danger
+              th Codigo_Nomenclatura_Modulo
+              th Nombre_Modulo
+              th Estado Switch
+          tbody
+            tr.success
+              td /index.html
+              td 1265
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+            tr.success
+              td /about.html
+              td 33.3%
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+            tr.success
+              td /sales.html
+              td 21.3%
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+            tr.success
+              td /blog.html
+              td 9516
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+            tr.success
+              td /404.html
+              td 23
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+    .col-lg-6
+      h2 Grupos de Modulos
+      .table-responsive
+        table.table.table-bordered.table-hover.table-striped
+          thead
+            tr.danger
+              th Nombre_Grupo_Modulos
+              th Switch
+          tbody
+            tr.success
+              td /index.html
+              td 1265
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+            tr.success
+              td /about.html
+              td 33.3%
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+            tr.success
+              td /sales.html
+              td 21.3%
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+            tr.success
+              td /blog.html
+              td 9516
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+            tr.success
+              td /404.html
+              td 23
+              td
+                label.switch
+                  input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                  .slider.round
+    .col-lg-6
+      h2 Bootstrap Docs
+      p
+        | For complete documentation, please visit
+        a(target='_blank', href='http://getbootstrap.com/css/#tables') Bootstrap's Tables Documentation
+        | .
