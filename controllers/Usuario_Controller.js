@@ -4,6 +4,7 @@ var implements = require('implements');
 
 module.exports = {
 	getRegistrar_Usuario: function(req, res, next) {
+		console.log('get consul Usuario');
 		res.render('Gestionar_Usuario/Registrar_Usuario', {Usuario: req.session.Persona});
 	},
 	getConsultar_Usuario: function(req, res, next) {
@@ -16,6 +17,7 @@ module.exports = {
 		res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona});
 	},
 	postRegistrar_Usuario: function(req, res, next) {
+		console.log('en reg usuario');
 		var Class_Persona = require('../class/Persona');
 		var Interface_Persona = require('../interfaces/IPersona');
 		console.log('getIndex function');
@@ -35,7 +37,7 @@ module.exports = {
 				}
 			});
 		} else {
-			// console.log('error en la interface IPersona');
+			console.log('error en la interface IPersona');
 			res.render('error', {Usuario: req.session.Persona,info_error : 'Error en implementacion de Interface' });
 		}
 	},
@@ -47,7 +49,9 @@ module.exports = {
 		var IPersona = new Interface_Persona();
 		if (implements(Persona, IPersona) == true) { //a la clase Persona implementeme la interface IPersona
 			console.log('true implementr persona DashBoard');
-			// console.log(req.body.Identificacion,req.body.Nombres,req.body.Apellidos,req.body.Usuario,req.body.Password,req.body.optionsRadios);
+			console.log(req.body.Identificacion);
+			// console.log(Persona.);
+
 			Persona.Consultar_Persona(req.body.Identificacion).then(resultado => {
 				console.log("Albums: ", resultado);
 				if (resultado!=null) {
@@ -148,7 +152,7 @@ module.exports = {
 		console.log('Delete Usuario');
 		var Class_Persona = require('../class/Persona');
 		var Interface_Persona = require('../interfaces/IPersona');
-		// console.log('putModificar_Usuario function');
+		console.log('putModificar_Usuario function');
 		var Persona = new Class_Persona();
 		var IPersona = new Interface_Persona();
 		if (implements(Persona, IPersona) == true) { //a la clase Persona implementeme la interface IPersona
@@ -165,7 +169,7 @@ module.exports = {
 				}
 			});
 		} else {
-			// console.log('error en la interface IPersona');
+			console.log('error en la interface IPersona');
 			res.render('error', {Usuario: req.session.Persona,info_error : 'Error en implementacion de Interface' });
 		}
 	}

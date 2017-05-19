@@ -7,7 +7,7 @@ router.use(function(req, res, next) {
   console.log('Time: ', Date.now());
   if(req.session.Persona){
     console.log('Si logeado');
-    console.log(req.session.Persona);
+    // console.log(req.session.Persona);
     next();
   }else{
     console.log('No logeado');

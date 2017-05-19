@@ -18,7 +18,7 @@ module.exports = {
           req.flash('info', 'Hubo un error en la consulta!')
           res.redirect('/Login');
         } else {
-          console.log('Persona Consultada correctamente.');
+          console.log('Session iniciada correctamente.');
           console.log(rows);
           var data_session=rows;
           conn.end();
