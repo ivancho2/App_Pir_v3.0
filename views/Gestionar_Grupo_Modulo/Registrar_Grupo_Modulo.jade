@@ -1,0 +1,47 @@
+extends ../layout/layout_dashboard
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | Registro de Grupo de Modulos
+    if info_error != undefined && info_error.length
+      .col-lg-12
+        .alert.alert-warning
+          strong Alert!
+          |  #{info_error}
+    if info_success != undefined && info_success.length
+      .col-lg-12
+        .alert.alert-success
+          strong Alert!
+          |  #{info_success}
+  .row
+    .col-lg-12
+      .panel.panel-green
+        .panel-heading
+          h3.panel-title Registrar Modulo:
+        .panel-body
+          form(role='form',action='Registrar_Modulo', method='post')
+            .col-lg-6
+              .form-group
+                label Codigo_Nomenclatura:
+                input.form-control(placeholder='Ej: ESP8266_562341',required='',name='Codigo_Nomenclatura_Modulo')
+              .form-group
+                label Nombre del Modulo:
+                input.form-control(placeholder='registre un nombre que ayude en su identificacion', required='',name='nombre_Modulo')
+              .form-group
+                label Descripcion:
+                textarea.form-control(name='descripcion_Modulo',placeholder='Descripcion...', rows='3',required='')
+            .col-lg-6
+              .form-group
+                label Estado inicial (Switch):
+                .col-lg-12
+                  label.switch
+                    input.inputdemo(name='estado_switch_Modulo',type='checkbox', checked='')
+                    .slider.round
+              .col-lg-4
+                button.btn.btn-success(type='submit') Confirmar y Enviar
+              .col-lg-4
+                button.btn.btn-warning(type='reset')
+                  i.fa.fa-edit
+                  |   Limpiar Todo

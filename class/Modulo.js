@@ -109,7 +109,7 @@ Modulo.prototype.Modificar_Modulo = function(str_Codigo_Nomenclatura_Modulo, str
 		// console.log('Fin regi Modulo');
 	});
 };
-Modulo.prototype.Inhabilitar_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
+Modulo.prototype.Eliminar_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
 	return new Promise(function (response, reject){
 		ObjP = {
 			estado_Modulo:'inhabilitado'

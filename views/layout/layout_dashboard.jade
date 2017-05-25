@@ -90,7 +90,7 @@ html(lang='en')
                     li
                       a(href='Modificar_Usuario') Modificar Usuario
                     li
-                      a(href='Inhabilitar_Usuario') Inhabilitar Usuario
+                      a(href='Eliminar_Usuario') Eliminar Usuario
             if Usuario.Rol_Persona_id_Rol_Persona<=2
               li
                 a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Modulos')
@@ -105,7 +105,7 @@ html(lang='en')
                   li
                     a(href='Modificar_Modulo') Modificar Modulo
                   li
-                    a(href='Inhabilitar_Modulo') Inhabilitar Modulo
+                    a(href='Eliminar_Modulo') Eliminar Modulo
             if Usuario.Rol_Persona_id_Rol_Persona<=2
               li
                 a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Grupo_Modulos')
@@ -114,13 +114,13 @@ html(lang='en')
                   i.fa.fa-fw.fa-caret-down
                 ul#li_Gestionar_Grupo_Modulos.collapse
                   li
-                    a(href='#') Registrar Grupo
+                    a(href='Registrar_Grupo_Modulo') Registrar Grupo
                   li
-                    a(href='#') Consultar Grupo
+                    a(href='Consultar_Grupo_Modulo') Consultar Grupo
                   li
-                    a(href='#') Modificar Grupo
+                    a(href='Modificar_Grupo_Modulo') Modificar Grupo
                   li
-                    a(href='#') Inhabilitar Grupo
+                    a(href='Eliminar_Grupo_Modulo') Eliminar Grupo
             li
               a(href='charts.html')
                 i.fa.fa-fw.fa-bar-chart-o

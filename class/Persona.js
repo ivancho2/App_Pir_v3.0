@@ -114,7 +114,7 @@ Persona.prototype.Modificar_Persona = function(int_identificacion, str_nombres, 
  });
 };
 
-Persona.prototype.Inhabilitar_Persona = function(int_identificacion) {
+Persona.prototype.Eliminar_Persona = function(int_identificacion) {
 	return new Promise(function (response, reject){
 		ObjP = {
 			identificacion_Persona: int_identificacion

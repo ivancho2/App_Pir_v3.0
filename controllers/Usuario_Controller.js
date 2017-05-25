@@ -13,8 +13,8 @@ module.exports = {
 	getModificar_Usuario: function(req, res, next) {
 		res.render('Gestionar_Usuario/Modificar_Usuario', {Usuario: req.session.Persona});
 	},
-	getInhabilitar_Usuario: function(req, res, next) {
-		res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona});
+	getEliminar_Usuario: function(req, res, next) {
+		res.render('Gestionar_Usuario/Eliminar_Usuario', {Usuario: req.session.Persona});
 	},
 	postRegistrar_Usuario: function(req, res, next) {
 		console.log('en reg usuario');
@@ -121,7 +121,7 @@ module.exports = {
 			res.render('error', {Usuario: req.session.Persona,info_error : 'Error en implementacion de Interface' });
 		}
 	},
-	postInhabilitar_Usuario: function(req, res, next) {
+	postEliminar_Usuario: function(req, res, next) {
 		var Class_Persona = require('../class/Persona');
 		var Interface_Persona = require('../interfaces/IPersona');
 		console.log('getIndex function');
@@ -137,10 +137,10 @@ module.exports = {
 					resultado.info_success = 'Persona Consultada correctamente!';
 					// console.log("Albums2: ", resultado);
 					// console.log('true en Consultar return');
-					res.render('Gestionar_Usuario/Inhabilitar_Usuario', resultado);
+					res.render('Gestionar_Usuario/Eliminar_Usuario', resultado);
 				}else{
 					console.log('else en Consultar return');
-					res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona, info_error : 'Error Query al Consultar el Usuario'});
+					res.render('Gestionar_Usuario/Eliminar_Usuario', {Usuario: req.session.Persona, info_error : 'Error Query al Consultar el Usuario'});
 				}
 			});
 		} else {
@@ -148,7 +148,7 @@ module.exports = {
 			res.render('error', {Usuario: req.session.Persona,info_error : 'Error en implementacion de Interface' });
 		}
 	},
-	deleteInhabilitar_Usuario: function(req, res, next) {
+	deleteEliminar_Usuario: function(req, res, next) {
 		console.log('Delete Usuario');
 		var Class_Persona = require('../class/Persona');
 		var Interface_Persona = require('../interfaces/IPersona');
@@ -158,14 +158,14 @@ module.exports = {
 		if (implements(Persona, IPersona) == true) { //a la clase Persona implementeme la interface IPersona
 			// console.log('true implementr persona DashBoard');
 			console.log(req.body.Identificacion);
-			Persona.Inhabilitar_Persona(req.body.Identificacion).then(resultado => {
+			Persona.Eliminar_Persona(req.body.Identificacion).then(resultado => {
 				console.log("Albums: ", resultado);
 				if (resultado.boolean) {
 					// console.log('true en registro return');
-					res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona, info_success : 'Persona Inhabilitada correctamente!'});
+					res.render('Gestionar_Usuario/Eliminar_Usuario', {Usuario: req.session.Persona, info_success : 'Persona Inhabilitada correctamente!'});
 				}else{
 					// console.log('else en registro return');
-					res.render('Gestionar_Usuario/Inhabilitar_Usuario', {Usuario: req.session.Persona, info_error : 'Error Query al Inhabilitar el Usuario, El Usuario probablemente no existe!'});
+					res.render('Gestionar_Usuario/Eliminar_Usuario', {Usuario: req.session.Persona, info_error : 'Error Query al Eliminar el Usuario, El Usuario probablemente no existe!'});
 				}
 			});
 		} else {

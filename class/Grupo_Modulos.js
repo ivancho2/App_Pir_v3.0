@@ -109,7 +109,7 @@ Grupo_Modulos.prototype.Modificar_Modulo = function(int_id_Grupo_Modulos, str_no
 		// console.log('Fin regi Modulo');
 	});
 };
-Grupo_Modulos.prototype.Inhabilitar_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
+Grupo_Modulos.prototype.Eliminar_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
 	return new Promise(function (response, reject){
 		ObjP = {
 			id_Grupo_Modulos : int_id_Grupo_Modulos
