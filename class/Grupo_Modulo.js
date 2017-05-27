@@ -16,7 +16,7 @@ function Grupo_Modulos(){
 	int_Persona_identificacion_Persona=0;
 }
 
-Grupo_Modulos.prototype.Registrar_Modulo = function(int_id_Grupo_Modulos, str_nombre_Grupo_Modulos, str_descripcion_Grupo_Modulos, int_estado_switch_Grupo_Modulos, int_Persona_identificacion_Persona) {
+Grupo_Modulos.prototype.Registrar_Grupo_Modulo = function(int_id_Grupo_Modulos, str_nombre_Grupo_Modulos, str_descripcion_Grupo_Modulos, int_estado_switch_Grupo_Modulos, int_Persona_identificacion_Persona) {
 	return new Promise(function (response, reject){
 		ObjP = {
 			id_Grupo_Modulos : int_id_Grupo_Modulos;
@@ -42,13 +42,13 @@ Grupo_Modulos.prototype.Registrar_Modulo = function(int_id_Grupo_Modulos, str_no
 				conn.end();
 			}
 		});
-		console.log('Fin regi Modulo');
+		console.log('Fin regi Grupo Modulo');
 	});
 };
-Grupo_Modulos.prototype.Consultar_Modulo = function(int_id_Grupo_Modulos) {
+Grupo_Modulos.prototype.Consultar_Grupo_Modulo = function(str_nombre_Grupo_Modulos) {
 	return new Promise(function (response, reject){
 		ObjP = {
-			id_Grupo_Modulos : int_id_Grupo_Modulos;
+			nombre_Grupo_Modulos : str_nombre_Grupo_Modulos
 		};
 		console.log('consult grupo modulos');
 		var conf_mysql = require('../config_services/conf_mysql');
@@ -81,7 +81,7 @@ Grupo_Modulos.prototype.Consultar_Modulo = function(int_id_Grupo_Modulos) {
 		});
 	});
 };
-Grupo_Modulos.prototype.Modificar_Modulo = function(int_id_Grupo_Modulos, str_nombre_Grupo_Modulos, str_descripcion_Grupo_Modulos) {
+Grupo_Modulos.prototype.Modificar_Grupo_Modulo = function(int_id_Grupo_Modulos, str_nombre_Grupo_Modulos, str_descripcion_Grupo_Modulos) {
 	console.log('Modificar Grupo de Modulo');
 	return new Promise(function (response, reject){
 		console.log(int_id_Grupo_Modulos);
@@ -94,8 +94,8 @@ Grupo_Modulos.prototype.Modificar_Modulo = function(int_id_Grupo_Modulos, str_no
 		var conn=mysql.createConnection(conf_mysql);
 		// console.log('en fun res');
 		conn.connect();
-		conn.query('UPDATE grupo_modulos SET ? WHERE ?', [ ObjP, {id_Grupo_Modulos:int_id_Grupo_Modulos}], function(err, rows, fields) {
 			if (err) {
+				conn.query('UPDATE grupo_modulos SET ? WHERE ?', [ ObjP, {nombre_Grupo_Modulos: str_nombre_Grupo_Modulos}], function(err, rows, fields) {
 				console.log('error en UPDATE');
 				console.log(err);
 				conn.end();
@@ -109,10 +109,10 @@ Grupo_Modulos.prototype.Modificar_Modulo = function(int_id_Grupo_Modulos, str_no
 		// console.log('Fin regi Modulo');
 	});
 };
-Grupo_Modulos.prototype.Eliminar_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
+Grupo_Modulos.prototype.Eliminar_Grupo_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
 	return new Promise(function (response, reject){
 		ObjP = {
-			id_Grupo_Modulos : int_id_Grupo_Modulos
+			nombre_Grupo_Modulos : str_nombre_Grupo_Modulos
 		};
 		console.log(ObjP);
 		var conf_mysql = require('../config_services/conf_mysql');

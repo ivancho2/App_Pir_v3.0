@@ -18,16 +18,16 @@ module.exports = {
 
 	postRegistrar_Grupo_Modulo: function(req, res, next) {
 		var Class_Grupo_Modulo = require('../class/Grupo_Modulo');
-		var Interface_Grupo_Modulo = require('../interfaces/IModulo');
+		var Interface_Grupo_Modulo = require('../interfaces/IGrupo_Modulo');
 		console.log('getIndex function');
-		var Modulo = new Class_Grupo_Modulo();
-		var IModulo = new Interface_Grupo_Modulo();
+		var Grupo_Modulo = new Class_Grupo_Modulo();
+		var IGrupo_Modulo = new Interface_Grupo_Modulo();
 		var sw;
 		(req.body.estado_switch_Modulo!='on')? sw = 0: sw = 1 ;
 
 		console.log(req.body.Codigo_Nomenclatura_Modulo,' - ',sw);
 		// console.log(modulo);
-		if (implements(Modulo, IModulo) == true) { //a la clase Modulo implementeme la interface IModulo
+		if (implements(Grupo_Modulo, IGrupo_Modulo) == true) { //a la clase Modulo implementeme la interface IModulo
 			console.log('true implementr Modulo DashBoard');
 			Modulo.Registrar_Grupo_Modulo(req.body.Codigo_Nomenclatura_Modulo, req.body.nombre_Modulo, req.body.descripcion_Modulo,sw, 'activo', req.session.Persona.identificacion_Persona).then(resultado => {
 				console.log("Albums: ",resultado);
@@ -72,15 +72,15 @@ module.exports = {
 		}
 	},
 	postModificar_Grupo_Modulo: function(req, res, next) {
-		var Class_Modulo = require('../class/Modulo');
-		var Interface_Modulo = require('../interfaces/IModulo');
+		var Class_Grupo_Modulo = require('../class/Grupo_Modulo');
+		var Interface_Grupo_Modulo = require('../interfaces/IGrupo_Modulo');
 		console.log('getIndex function');
-		var Modulo = new Class_Modulo();
-		var IModulo = new Interface_Modulo();
-		if (implements(Modulo, IModulo) == true) { //a la clase Modulo implementeme la interface IModulo
+		var Grupo_Modulo = new Class_Grupo_Modulo();
+		var IGrupo_Modulo = new Interface_Grupo_Modulo();
+		if (implements(Grupo_Modulo, IGrupo_Modulo) == true) { //a la clase Modulo implementeme la interface IModulo
 			console.log('true implementr Modulo DashBoard');
 			// console.log(req.body.Identificacion,req.body.Nombres,req.body.Apellidos,req.body.Usuario,req.body.Password,req.body.optionsRadios);
-			Modulo.Consultar_Grupo_Modulo(req.body.Codigo_Nomenclatura_Modulo).then(resultado => {
+			Grupo_Modulo.Consultar_Grupo_Modulo(req.body.Codigo_Nomenclatura_Modulo).then(resultado => {
 				console.log("Albums: ", resultado);
 				if (resultado!=null){
 					resultado.Usuario=req.session.Persona;
