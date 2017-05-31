@@ -1,0 +1,102 @@
+extends ../layout/layout_dashboard
+
+block content
+  .row
+    .col-lg-12
+      h1.page-header
+        | Suscribir Modulos a Grupo de Modulos
+    if info_error != undefined && info_error.length
+      .col-lg-12
+        .alert.alert-warning
+          strong Alert!
+          |  #{info_error}
+    if info_success != undefined && info_success.length
+      .col-lg-12
+        .alert.alert-success
+          strong Alert!
+          |  #{info_success}
+  .row
+    .col-lg-6
+      .panel.panel-green
+        .panel-heading
+          h3.panel-title Consultar Grupo de Modulos:
+        .panel-body
+          form(role='form',action='Suscribir_Modulo_Grupo_Modulo', method='post')
+            .row
+              .col-lg-12
+                p.panel-title Especifique el Grupo de Modulos al que desea suscribir Modulos.
+            .row
+              .col-lg-12
+                .form-group
+                  label Nombre del Grupo de Modulos (Unico):
+                  input.form-control(placeholder='Ej: Pasillo 3', required='', name='nombre_Grupo_Modulos')
+                .col-lg-6
+                  button.btn.btn-success(type='submit') Confirmar y Consultar
+                .col-lg-6
+                  button.btn.btn-warning(type='reset')
+                    i.fa.fa-edit
+                    |   Limpiar Todo
+  if nombre_Grupo_Modulos != undefined
+    .row
+      .col-lg-12
+        h2(style='text-align:center;')
+          |  Nombre Grupo:
+          strong  #{nombre_Grupo_Modulos}
+    .row
+      .col-lg-12
+        .panel.panel-green
+          .panel-heading
+            h3.panel-title Tabla de Edicion:
+              strong  #{nombre_Grupo_Modulos}
+          .panel-body
+            form(role='form', action='PUT_Suscribir_Modulo_Grupo_Modulo', method='post')
+              .col-lg-6
+                if suscritos != undefined && suscritos != null
+                  h2
+                    strong Suscritos al Grupo
+                  .table-responsive
+                    table.table.table-hover
+                      thead
+                        tr
+                          th Codigo_Nomenclatura_Modulo
+                          th Suscrito
+                      tbody
+                        each item in suscritos
+                          tr
+                            td= item.Codigo_Nomenclatura_Modulo
+                            td
+                              fieldset(disabled='')
+                                .form-group
+                                  .checkbox
+                                    label
+                                      input(type='checkbox' checked='')
+              .col-lg-6
+                if no_suscritos != undefined && no_suscritos != null
+                  h2
+                    strong No Suscritos al Grupo
+                    input.form-control(type='hidden', name='id_Grupo_Modulos',value='#{id_Grupo_Modulos}')
+                    input.form-control(type='hidden', name='nombre_Grupo_Modulos',value='#{nombre_Grupo_Modulos}')
+                    input.form-control(type='hidden', name='suscritos',value='ESP_OPEN')
+                  .table-responsive
+                    table.table.table-hover
+                      thead
+                        tr
+                          th Codigo_Nomenclatura_Modulo
+                          th Suscribir
+                      tbody
+                        each item in no_suscritos
+                          tr
+                            td= item.Codigo_Nomenclatura_Modulo
+                            td
+                              .form-group
+                                .checkbox
+                                  label
+                                    input(type='checkbox' name='suscritos' value=item.Codigo_Nomenclatura_Modulo)
+              .col-lg-12
+                .col-lg-6
+                  button.btn.btn-success(type='submit')
+                    |  Confirmar y Enviar
+                .col-lg-6
+                  button.btn.btn-warning(type='reset')
+                    i.fa.fa-edit
+                    |   Restaurar Todo

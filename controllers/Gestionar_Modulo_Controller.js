@@ -19,7 +19,7 @@ module.exports = {
 	postRegistrar_Modulo: function(req, res, next) {
 		var Class_Modulo = require('../class/Modulo');
 		var Interface_Modulo = require('../interfaces/IModulo');
-		console.log('getIndex function');
+		// console.log('getIndex function');
 		var Modulo = new Class_Modulo();
 		var IModulo = new Interface_Modulo();
 		var sw;
@@ -28,7 +28,7 @@ module.exports = {
 		// console.log(modulo);
 		if (implements(Modulo, IModulo) == true) { //a la clase Modulo implementeme la interface IModulo
 			console.log('true implementr Modulo DashBoard');
-			Modulo.Registrar_Modulo(req.body.Codigo_Nomenclatura_Modulo, req.body.nombre_Modulo, req.body.descripcion_Modulo,sw, 'activo', req.session.Persona.identificacion_Persona).then(resultado => {
+			Modulo.Registrar_Modulo(req.body.Codigo_Nomenclatura_Modulo, req.body.nombre_Modulo, req.body.descripcion_Modulo,sw, req.session.Persona.identificacion_Persona).then(resultado => {
 				console.log("Albums: ",resultado);
 				if (resultado.boolean) {
 					console.log('true en registro return');

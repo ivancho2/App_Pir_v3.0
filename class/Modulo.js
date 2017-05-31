@@ -7,11 +7,10 @@ function Modulo() {
 	str_nombre_Modulo = '';
 	str_descripcion_Modulo = '';
 	int_estado_switch_Modulo = 0;
-	str_estado_Modulo = '';
 	int_Persona_identificacion_Persona = 0;
 }
 
-Modulo.prototype.Registrar_Modulo = function(str_Codigo_Nomenclatura_Modulo, str_nombre_Modulo, str_descripcion_Modulo, int_estado_switch_Modulo, str_estado_Modulo, int_Persona_identificacion_Persona) {
+Modulo.prototype.Registrar_Modulo = function(str_Codigo_Nomenclatura_Modulo, str_nombre_Modulo, str_descripcion_Modulo, int_estado_switch_Modulo, int_Persona_identificacion_Persona) {
 // mysql> insert into modulo values ('ESP8266_234TEST' ,'nombre_modulotest' ,'descripcion modulo test',1,'activo',1);
 	return new Promise(function (response, reject){
 		ObjP = {
@@ -19,10 +18,8 @@ Modulo.prototype.Registrar_Modulo = function(str_Codigo_Nomenclatura_Modulo, str
 			nombre_Modulo: str_nombre_Modulo,
 			descripcion_Modulo: str_descripcion_Modulo,
 			estado_switch_Modulo: int_estado_switch_Modulo,
-			estado_Modulo: str_estado_Modulo,
 			Persona_identificacion_Persona: int_Persona_identificacion_Persona
 		};
-		prot
 		console.log(ObjP);
 		var conf_mysql = require('../config_services/conf_mysql');
 		var conn=mysql.createConnection(conf_mysql);
@@ -66,7 +63,6 @@ Modulo.prototype.Consultar_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
 						nombre_Modulo: rows[0].nombre_Modulo,
 						descripcion_Modulo: rows[0].descripcion_Modulo,
 						estado_switch_Modulo: rows[0].estado_switch_Modulo,
-						estado_Modulo: rows[0].estado_Modulo,
 						Persona_identificacion_Persona: rows[0].Persona_identificacion_Persona
 					};
 					console.log(ObjA);
@@ -83,7 +79,7 @@ Modulo.prototype.Consultar_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
 Modulo.prototype.Modificar_Modulo = function(str_Codigo_Nomenclatura_Modulo, str_nombre_Modulo, str_descripcion_Modulo) {
 	console.log('Modificar_Modulo');
 	return new Promise(function (response, reject){
-		// str_Codigo_Nomenclatura_Modulo, str_nombre_Modulo, str_descripcion_Modulo, int_estado_switch_Modulo, str_estado_Modulo, int_Persona_identificacion_Persona) {
+		// str_Codigo_Nomenclatura_Modulo, str_nombre_Modulo, str_descripcion_Modulo, int_estado_switch_Modulo,int_Persona_identificacion_Persona) {
 		console.log(str_Codigo_Nomenclatura_Modulo);
 		ObjP = {
 			nombre_Modulo: str_nombre_Modulo,
@@ -112,19 +108,19 @@ Modulo.prototype.Modificar_Modulo = function(str_Codigo_Nomenclatura_Modulo, str
 Modulo.prototype.Eliminar_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
 	return new Promise(function (response, reject){
 		ObjP = {
-			estado_Modulo:'inhabilitado'
+			Codigo_Nomenclatura_Modulo:str_Codigo_Nomenclatura_Modulo
 		};
 		console.log(ObjP);
 		var conf_mysql = require('../config_services/conf_mysql');
 		var conn=mysql.createConnection(conf_mysql);
 		conn.connect();
-		conn.query('UPDATE Modulo SET ? WHERE ?', [ObjP, {Codigo_Nomenclatura_Modulo:str_Codigo_Nomenclatura_Modulo}], function(err, rows, fields) {
+		conn.query('DELETE FROM  Modulo WHERE ?', ObjP, function(err, rows, fields) {
 			if (err) {
 				console.log('error en la consulta');
 				conn.end();
 				response({boolean:false});
 			} else {
-				console.log('Modulo eliminada correctamente.');
+				console.log('Modulo eliminado correctamente.');
 				conn.end();
 				response({boolean:true});
 			}

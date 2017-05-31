@@ -4,7 +4,7 @@ block content
   .row
     .col-lg-12
       h1.page-header
-        | Consultar Modulos
+        | Consultar Grupo de Modulos
     if info_error != undefined && info_error.length
       .col-lg-12
         .alert.alert-warning
@@ -19,13 +19,13 @@ block content
     .col-lg-6
       .panel.panel-green
         .panel-heading
-          h3.panel-title Datos del Modulo a Consultar:
+          h3.panel-title Datos del Grupo de Modulos a Consultar:
         .panel-body
-          form(role='form',action='Consultar_Modulo', method='post')
+          form(role='form',action='Consultar_Grupo_Modulo', method='post')
             .col-lg-12
               .form-group
-                label Codigo_Nomenclatura_Modulo:
-                input.form-control(name = 'Codigo_Nomenclatura_Modulo',placeholder='Ej: (ESP8266_2331233)',required='')
+                label Nombre del Grupo de Modulos (Unico):
+                input.form-control(placeholder='Ej: Pasillo 3',required='',name='nombre_Grupo_Modulos')
             .col-lg-6
               button.btn.btn-success(type='submit') Confirmar y Consultar
             .col-lg-6
@@ -36,30 +36,26 @@ block content
     .col-lg-12
       .panel.panel-green
         .panel-heading
-          h3.panel-title Modulo Consultado:
+          h3.panel-title Datos: Grupo de Modulos Consultado:
         .panel-body
           fieldset(disabled='')
             .col-lg-6
               .form-group
-                label(for='disabledSelect') Codigo_Nomenclatura:
-                input#disabledInput.form-control( disabled='',value='#{Codigo_Nomenclatura_Modulo}')
+                label(for='disabledSelect') Nombre del Grupo de Modulos:
+                input#disabledInput.form-control( disabled='',value='#{nombre_Grupo_Modulos}')
               .form-group
-                label(for='disabledSelect') Registrado por el Usuario ID:
-                input#disabledInput.form-control( disabled='',value='#{Persona_identificacion_Persona}')
-              .form-group
-                label(for='disabledSelect') Nombre del Modulo:
-                input#disabledInput.form-control( disabled='',value='#{nombre_Modulo}')
-              .form-group
-                label(for='disabledSelect') Descripcion:
-                textarea.form-control(disabled='',rows='3')
-                  | #{descripcion_Modulo}
+                label(for='disabledSelect') Descripcion del Grupo de Modulos:
+                input#disabledInput.form-control( disabled='',value='#{descripcion_Grupo_Modulos}')
             .col-lg-6
               .form-group
                 label(for='disabledSelect') Estado actual del Modulo (Switch):
                 .col-lg-12
                   label.switch
-                    if estado_switch_Modulo==1
+                    if estado_switch_Grupo_Modulos==1
                       input.inputdemo(type='checkbox', disabled='', checked='')
                     else
                       input.inputdemo( disabled='',type='checkbox')
                     .slider.round
+              .form-group
+                label(for='disabledSelect') Codigo del Registrador (Usuario):
+                input#disabledInput.form-control( disabled='',value='#{Persona_identificacion_Persona}')
