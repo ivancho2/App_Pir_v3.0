@@ -14,9 +14,7 @@ router.use(function(req, res, next) {
     res.redirect('/Login');
   }
 });
-router.get('/',function(req, res, next) {
-  res.render('dashboard_home', {Usuario: req.session.Persona});
-});
+router.get('/',controllers.Dashboard_Controller.dashboard);
 
 //Gestionar_Usuario
 router.get('/Registrar_Usuario', controllers.Gestionar_Usuario_Controller.getRegistrar_Usuario);

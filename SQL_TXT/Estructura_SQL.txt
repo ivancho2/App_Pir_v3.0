@@ -1,0 +1,105 @@
+use app_pir2
+show tables;
+	desc grupo_modulos;
+	desc modulo;
+	desc persona;
+	desc reporte_cambio_estado_grupo_modulos;
+	desc reporte_cambio_estado_modulo;
+	desc rol_persona;
+	desc suscripcion_modulo_grupo_modulos;
+	+-------------------------------------+
+	| Tables_in_app_pir2                  |
+	+-------------------------------------+
+	| grupo_modulos                       |
+	| modulo                              |
+	| persona                             |
+	| reporte_cambio_estado_grupo_modulos |
+	| reporte_cambio_estado_modulo        |
+	| rol_persona                         |
+	| suscripcion_modulo_grupo_modulos    |
+	+-------------------------------------+
+	7 rows in set (0.00 sec)
+
+	mysql>  desc grupo_modulos;
+	+--------------------------------+-------------+------+-----+---------+----------------+
+	| Field                          | Type        | Null | Key | Default | Extra          |
+	+--------------------------------+-------------+------+-----+---------+----------------+
+	| id_Grupo_Modulos               | int(11)     | NO   | PRI | NULL    | auto_increment |
+	| nombre_Grupo_Modulos           | varchar(45) | NO   | UNI | NULL    |                |
+	| descripcion_Grupo_Modulos      | varchar(50) | NO   |     | NULL    |                |
+	| estado_switch_Grupo_Modulos    | tinyint(1)  | NO   |     | NULL    |                |
+	| Persona_identificacion_Persona | int(11)     | NO   | MUL | NULL    |                |
+	+--------------------------------+-------------+------+-----+---------+----------------+
+	5 rows in set (0.00 sec)
+
+	mysql>  desc modulo;
+	+--------------------------------+-------------+------+-----+---------+-------+
+	| Field                          | Type        | Null | Key | Default | Extra |
+	+--------------------------------+-------------+------+-----+---------+-------+
+	| Codigo_Nomenclatura_Modulo     | varchar(45) | NO   | PRI | NULL    |       |
+	| nombre_Modulo                  | varchar(45) | NO   |     | NULL    |       |
+	| descripcion_Modulo             | varchar(50) | NO   |     | NULL    |       |
+	| estado_switch_Modulo           | tinyint(1)  | NO   |     | NULL    |       |
+	| Persona_identificacion_Persona | int(11)     | NO   | MUL | NULL    |       |
+	+--------------------------------+-------------+------+-----+---------+-------+
+	5 rows in set (0.00 sec)
+
+	mysql>  desc persona;
+	+----------------------------+-------------+------+-----+---------+-------+
+	| Field                      | Type        | Null | Key | Default | Extra |
+	+----------------------------+-------------+------+-----+---------+-------+
+	| identificacion_Persona     | int(11)     | NO   | PRI | NULL    |       |
+	| nombres_Persona            | varchar(45) | NO   |     | NULL    |       |
+	| apellidos_Persona          | varchar(45) | NO   |     | NULL    |       |
+	| usuario_Persona            | varchar(45) | NO   | UNI | NULL    |       |
+	| password_Persona           | varchar(50) | NO   |     | NULL    |       |
+	| Rol_Persona_id_Rol_Persona | int(11)     | NO   | MUL | NULL    |       |
+	+----------------------------+-------------+------+-----+---------+-------+
+	6 rows in set (0.00 sec)
+
+	mysql>  desc reporte_cambio_estado_grupo_modulos;
+	+------------------------------------+-------------+------+-----+---------+----------------+
+	| Field                              | Type        | Null | Key | Default | Extra          |
+	+------------------------------------+-------------+------+-----+---------+----------------+
+	| id_Reporte_Cambio_Estado_Modulo    | int(11)     | NO   | PRI | NULL    | auto_increment |
+	| fecha_Reporte_Cambio_Estado_Modulo | varchar(45) | NO   |     | NULL    |                |
+	| nuevo_estado_switch                | tinyint(1)  | NO   |     | NULL    |                |
+	| Grupo_Modulos_id_Grupo_Modulos     | int(11)     | NO   | MUL | NULL    |                |
+	| Persona_identificacion_Persona     | int(11)     | NO   | MUL | NULL    |                |
+	+------------------------------------+-------------+------+-----+---------+----------------+
+	5 rows in set (0.00 sec)
+
+	mysql>  desc reporte_cambio_estado_modulo;
+	+------------------------------------+-------------+------+-----+---------+----------------+
+	| Field                              | Type        | Null | Key | Default | Extra          |
+	+------------------------------------+-------------+------+-----+---------+----------------+
+	| id_Reporte_Cambio_Estado_Modulo    | int(11)     | NO   | PRI | NULL    | auto_increment |
+	| fecha_Reporte_Cambio_Estado_Modulo | varchar(45) | NO   |     | NULL    |                |
+	| nuevo_estado_switch                | tinyint(1)  | NO   |     | NULL    |                |
+	| Modulo_Codigo_Nomenclatura_Modulo  | varchar(45) | NO   | MUL | NULL    |                |
+	| Persona_identificacion_Persona     | int(11)     | NO   | MUL | NULL    |                |
+	+------------------------------------+-------------+------+-----+---------+----------------+
+	5 rows in set (0.00 sec)
+
+	mysql>  desc rol_persona;
+	+----------------+-------------+------+-----+---------+----------------+
+	| Field          | Type        | Null | Key | Default | Extra          |
+	+----------------+-------------+------+-----+---------+----------------+
+	| id_Rol_Persona | int(11)     | NO   | PRI | NULL    | auto_increment |
+	| Rol_Persona    | varchar(45) | NO   |     | NULL    |                |
+	+----------------+-------------+------+-----+---------+----------------+
+	2 rows in set (0.00 sec)
+
+	mysql>  desc suscripcion_modulo_grupo_modulos;
+	+-------------------------------------+-------------+------+-----+---------+----------------+
+	| Field                               | Type        | Null | Key | Default | Extra          |
+	+-------------------------------------+-------------+------+-----+---------+----------------+
+	| id_Suscripcion_Modulo_Grupo_Modulos | int(11)     | NO   | PRI | NULL    | auto_increment |
+	| fecha_Suscripcion                   | varchar(45) | NO   |     | NULL    |                |
+	| Grupo_Modulos_id_Grupo_Modulos      | int(11)     | NO   | PRI | NULL    |                |
+	| Modulo_Codigo_Nomenclatura_Modulo   | varchar(45) | NO   | PRI | NULL    |                |
+	| Persona_identificacion_Persona      | int(11)     | NO   | PRI | NULL    |                |
+	+-------------------------------------+-------------+------+-----+---------+----------------+
+	5 rows in set (0.00 sec)
+
+	mysql>

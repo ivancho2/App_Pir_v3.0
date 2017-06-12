@@ -9,7 +9,7 @@ files.forEach(function cargarcontroladores(file){
 
     if(fileName !== 'index'){
         exports[fileName] = require('./'+ fileName)
-        console.log(cargarcontroladores, fileName);
+        // console.log(cargarcontroladores, fileName);
     }
 
 });

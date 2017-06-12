@@ -15,12 +15,13 @@ html(lang='en')
     // Custom Fonts
     link(href='./../../font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
     //jquery y socket
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(src='./../../js/jquery.min.js')
     script(src='./../../js/socket_io.js')
     script(src='./../../socket.io/socket.io.js')
   body
     #wrapper
       // Navigation
+      input#int_identificacion_Persona(type='hidden', value='#{Usuario.identificacion_Persona}')
       nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
         // Brand and toggle get grouped for better mobile display
         .navbar-header
@@ -70,11 +71,12 @@ html(lang='en')
         // Sidebar Menu Items - These collapse to the responsive navigation menu on small screens
         .collapse.navbar-collapse.navbar-ex1-collapse
           ul.nav.navbar-nav.side-nav
-            li
-              a(href='/DashBoard/#')
-                i.fa.fa-fw.fa-dashboard
-                |  Panel Principal
-            if Usuario.Rol_Persona_id_Rol_Persona<=2
+            if Usuario.Rol_Persona_id_Rol_Persona>1
+              li
+                a(href='/DashBoard/#')
+                  i.fa.fa-fw.fa-dashboard
+                  |  Panel Principal
+            if Usuario.Rol_Persona_id_Rol_Persona==1
               li
                 a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Usuarios')
                   i.fa.fa-fw.fa-edit
@@ -91,7 +93,7 @@ html(lang='en')
                       a(href='Modificar_Usuario') Modificar Usuario
                     li
                       a(href='Eliminar_Usuario') Eliminar Usuario
-            if Usuario.Rol_Persona_id_Rol_Persona<=2
+            if Usuario.Rol_Persona_id_Rol_Persona==2
               li
                 a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Modulos')
                   i.fa.fa-fw.fa-edit
@@ -106,7 +108,7 @@ html(lang='en')
                     a(href='Modificar_Modulo') Modificar Modulo
                   li
                     a(href='Eliminar_Modulo') Eliminar Modulo
-            if Usuario.Rol_Persona_id_Rol_Persona<=2
+            if Usuario.Rol_Persona_id_Rol_Persona == 2
               li
                 a(href='javascript:;', data-toggle='collapse', data-target='#li_Gestionar_Grupo_Modulos')
                   i.fa.fa-fw.fa-edit
@@ -125,10 +127,11 @@ html(lang='en')
                     a(href='Suscribir_Modulo_Grupo_Modulo') Suscribir Modulos a Grupo
                   li
                     a(href='Eliminar_Modulo_Grupo_Modulo') Des-Suscribir Modulos de Grupo
-            li
-              a(href='charts.html')
-                i.fa.fa-fw.fa-bar-chart-o
-                |  Ver Historial de Reportes
+            if Usuario.Rol_Persona_id_Rol_Persona == 4
+              li
+                a(href='charts.html')
+                  i.fa.fa-fw.fa-bar-chart-o
+                  |  Ver Historial de Reportes
         // /.navbar-collapse
       #page-wrapper
         .container-fluid
@@ -141,7 +144,7 @@ html(lang='en')
               ol.breadcrumb
                 li.active
                   i.fa.fa-desktop
-                  |  Panel Principal
+                  |  Panel Principal/#{tittle}
           // /.row
            // Main jumbotron for a primary marketing message or call to action
           block content
