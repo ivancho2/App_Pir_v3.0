@@ -6,6 +6,10 @@ module.exports = {
 	//funciones del controlador
 	dashboard: function(req, res) {
 		// res.render('dashboard_home',{Usuario: req.session.Persona});
+		console.log('antes otro require');
+		var client_mqtt=require('../config_services/mqtt');
+		console.log('despuesde otro require');
+		console.log(client_mqtt.vara);
 
 		var Class_Modulo = require('../class/Modulo');
 		var Interface_Modulo = require('../interfaces/IModulo');
