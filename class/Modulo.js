@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 var bcrypt = require('bcryptjs');
 var dateFormat = require('dateformat');
+var client_mqtt=require('../config_services/mqtt');
 
 function Modulo() {
 	str_Codigo_Nomenclatura_Modulo = '';
@@ -175,6 +176,8 @@ Modulo.prototype.Cambiar_Estado_Switch = function(str_Codigo_Nomenclatura_Modulo
 				response(false);
 			} else {
 				//console.log('Cambio Switch de Modulo realizado correctamente.');
+				console.log('emiiendo desde socket a mqtt topic',str_Codigo_Nomenclatura_Modulo, ' el valor ',int_estado_switch_Modulo);
+				client_mqtt.publish_mqtt(str_Codigo_Nomenclatura_Modulo,int_estado_switch_Modulo);
 				// ------- generando el reporte
 				var d=Date().split(' ');
 				var timestamp=d[0]+'-'+d[1]+'-'+d[2]+'-'+d[3]+' '+d[4];

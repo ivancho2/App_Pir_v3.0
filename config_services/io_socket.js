@@ -1,69 +1,68 @@
 var implements = require('implements');
-module.exports = function(server) {
 
-  var online=0;
-  io = require('socket.io')(server);
-  io.on('connection', function(socket){
-    online++;
-    socket.on('event', function(data){
-      console.log('impresion de evento en sockeet modulo');
-    });
-    socket.on('disconnect', function(){
-      online--;
-      console.log('Un Cliente se ha desconectado del Socket');
-      io.sockets.emit('message','Clientes en Linea #'+online);
-    });
-    var address = socket.handshake.address;
-    var idx = address.lastIndexOf(':');
-    if (~idx && ~address.indexOf('.'))
-    address = address.slice(idx + 1);
+module.exports = {
+  init : function (server) {
+    var online=0;
+    io = require('socket.io')(server);
+    io.on('connection', function(socket){
+      online++;
+      socket.on('event', function(data){
+        console.log('impresion de evento en sockeet modulo');
+      });
+      socket.on('disconnect', function(){
+        online--;
+        console.log('Un Cliente se ha desconectado del Socket');
+        io.sockets.emit('message','Clientes en Linea #'+online);
+      });
+      var address = socket.handshake.address;
+      var idx = address.lastIndexOf(':');
+      if (~idx && ~address.indexOf('.'))
+      address = address.slice(idx + 1);
 
-    console.log('Alguien se ha conectado '+ address);
-    io.sockets.emit('message','Un Cliente se ha Conectado al Socket');
-    io.sockets.emit('message','Clientes en Linea # '+online);
+      console.log('Alguien se ha conectado '+ address);
+      io.sockets.emit('message','Un Cliente se ha Conectado al Socket');
+      io.sockets.emit('message','Clientes en Linea # '+online);
 
-    //si alguien se conecta y solicita las listas de datos
-    socket.on('Solicitud_Listas', function() {
-      console.log('solicitaron listas');
-      Listar_Modulos().then(lista_modulos => {
-        // console.log('despues de promesa');
-        // console.log(lista_modulos);
-        if (lista_modulos!=null) {
-          socket.emit('Lista_Modulos',lista_modulos);
-        } else {
-          console.log('errro al cargar lista de modulos');
-        }
+      //si alguien se conecta y solicita las listas de datos
+      socket.on('Solicitud_Listas', function() {
+        console.log('solicitaron listas');
+        Listar_Modulos().then(lista_modulos => {
+          // console.log('despues de promesa');
+          // console.log(lista_modulos);
+          if (lista_modulos!=null) {
+            socket.emit('Lista_Modulos',lista_modulos);
+          } else {
+            console.log('errro al cargar lista de modulos');
+          }
+        });
+      });
+      //   - si cambia desde el DOM. cambiarlo en todos
+      socket.on('Cambiar_Estado_Modulo', function(data) {
+        console.log('Cambiar_Estado_Modulo');
+        console.log(data);
+        Cambiar_Estado_Modulo(data.str_Codigo_Nomenclatura_Modulo, data.int_estado_switch_Modulo, data.int_Persona_identificacion_Persona).then(state => {
+          if (state) {
+            io.sockets.emit('UPDATE_Cambiar_Estado_Modulo', data);
+          }
+        });
+      });
+      socket.on('Cambiar_Estado_Grupo', function(data) {
+        console.log('Cambiar_Estado_Grupo');
+        console.log(data);
+        Cambiar_Estado_Grupo(data.int_id_Grupo_Modulos,data.int_estado_switch_Grupo_Modulos, data.int_Persona_identificacion_Persona).then(state => {
+          if (state) {
+            io.sockets.emit('UPDATE_Cambiar_Estado_Grupo', data);
+          }
+        });
+      });
+      socket.on('message', function(data) {
+        console.log('-------------------');
+        console.log(data);
+        console.log('-------------------');
       });
     });
-    //   - si cambia desde el DOM. cambiarlo en todos
-    socket.on('Cambiar_Estado_Modulo', function(data) {
-      console.log('Cambiar_Estado_Modulo');
-      console.log(data);
-      Cambiar_Estado_Modulo(data.str_Codigo_Nomenclatura_Modulo, data.int_estado_switch_Modulo, data.int_Persona_identificacion_Persona).then(state => {
-        if (state) {
-          io.sockets.emit('UPDATE_Cambiar_Estado_Modulo', data);
-        }
-      });
-    });
-    socket.on('Cambiar_Estado_Grupo', function(data) {
-      console.log('Cambiar_Estado_Grupo');
-      console.log(data);
-      Cambiar_Estado_Grupo(data.int_id_Grupo_Modulos,data.int_estado_switch_Grupo_Modulos, data.int_Persona_identificacion_Persona).then(state => {
-        if (state) {
-          io.sockets.emit('UPDATE_Cambiar_Estado_Grupo', data);
-        }
-      });
-    });
-
-    socket.on('message', function(data) {
-      console.log('-------------------');
-      console.log(data);
-      console.log('-------------------');
-    });
-  });
+  }
 }
-
-
 function Listar_Modulos() {
   return new Promise(function (response, reject){
     var Class_Modulo = require('../class/Modulo');

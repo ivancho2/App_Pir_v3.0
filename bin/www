@@ -20,11 +20,8 @@ app.set('port', port);
 */
 
 var client_mqtt=require('../config_services/mqtt');
-console.log('inicianod');
-client_mqtt.ini();
-console.log(client_mqtt.vara);
-client_mqtt.vara="hajaja";
-console.log(client_mqtt.vara);
+// console.log('inicianod');
+client_mqtt.init();
 /**
 * Create HTTP server.
 */
@@ -35,7 +32,7 @@ var server = http.createServer(app);
 /**
 * Create Sockets service.
 */
-var $io = require('../config_services/io_socket')(server);
+var $io = require('../config_services/io_socket').init(server);
 
 /**
 * Listen on provided port, on all network interfaces.

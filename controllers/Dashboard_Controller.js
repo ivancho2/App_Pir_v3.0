@@ -6,11 +6,9 @@ module.exports = {
 	//funciones del controlador
 	dashboard: function(req, res) {
 		// res.render('dashboard_home',{Usuario: req.session.Persona});
-		console.log('antes otro require');
-		var client_mqtt=require('../config_services/mqtt');
-		console.log('despuesde otro require');
-		console.log(client_mqtt.vara);
-
+		// var client_mqtt=require('../config_services/mqtt');
+		// client_mqtt.suscripcion('ESP8266_120213');
+		// client_mqtt.unsuscripcion('ESP8266_120213');
 		var Class_Modulo = require('../class/Modulo');
 		var Interface_Modulo = require('../interfaces/IModulo');
 		console.log('getIndex function');
@@ -31,9 +29,9 @@ module.exports = {
 						//primero consulto el codigo del grupo con este nombre_Grupo_Modulos
 						Grupo_Modulo.Listar_Grupo_Modulos().then(lista_grupo_modulos => {
 							if (lista_grupo_modulos!=null){
-							console.log('true en Listar NO!! Suscritos a Grupo return');
-							console.log('Lista modulos: ',lista_modulos);
-							console.log('Lista grupos: ',lista_grupo_modulos);
+							// console.log('true en Listar NO!! Suscritos a Grupo return');
+							// console.log('Lista modulos: ',lista_modulos);
+							// console.log('Lista grupos: ',lista_grupo_modulos);
 								// res.render('dashboard_home',{Usuario: req.session.Persona});
 								res.render('dashboard_home',{Usuario: req.session.Persona,Lista_Modulos:lista_modulos,Lista_Grupo_Modulos:lista_grupo_modulos});
 							}else{
