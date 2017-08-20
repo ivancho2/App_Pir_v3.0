@@ -13,7 +13,11 @@ INSERT INTO `modulo` VALUES ('ESP8266_101010','B4_41045','breve descripcion',1,1
 ('ESP8266_1234567','B4_4104','Descripcion actualizada',1,1),
 ('ESP8266_234TEST','nombre_modulotest','descripcion modulo test',1,1),
 ('ESP8266_344567','M4P1','Modulo de bloque 4 piso 1 #4',0,2),
-('espmalo','test de eliminar editado','test de eliminar funcional 2',0,1);
+('espmalo','test de eliminar editado','test de eliminar funcional 2',0,1),
+('ESP8266_101010', 'B4_41045','breve descripcion', 1,1),
+('ESP8266_120215', 'B4_mqtttest', 'test de mqtt en smart-phone' , 1,2),
+('ESP8266_1234511', 'B4P425', 'Bloque 4 Piso 4 N26', 0,2,
+('ESP8266_12345322', 'B4P424', 'Bloque 4 Piso 4 n24', 0,2);
 
 INSERT INTO `grupo_modulos` VALUES (1,'pasillo 4 piso 1','descrip pasillo 4 modificado',1,1),
 (2,'pasillo 3 piso 2','descripcion pasillo',0,1);

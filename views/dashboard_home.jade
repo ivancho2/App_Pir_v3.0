@@ -8,7 +8,7 @@ block content
       p
         | Este es el panel principal para la administracion de los Switch del sistema Inmótico,
         | desde aquí se puede observar la lista de los modulos registrados al sistema ademas de Grupos
-        | de Modulos con su respectiva informacion
+        | de Modulos con su respectiva informacion.
     if info_error != undefined && info_error.length
       .col-lg-12
         .alert.alert-warning
@@ -21,16 +21,16 @@ block content
           |  #{info_success}
   .row
     .col-lg-12
-      h2 Tabla de Notificaciones
+      h2 Tabla de Notificaciones PIR
       .table-responsive
         table.table.table-hover.table-striped
           thead
             tr
               th Codigo_Nomenclatura
               th Nombre
-              th New Estado
+              th Estado Actual
               th Fecha/Hora
-          tbody
+          tbody#tbody_Notificaciones
             tr
               td ESP8266_120215
               td B3P2N1

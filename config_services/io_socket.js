@@ -32,7 +32,7 @@ module.exports = {
           if (lista_modulos!=null) {
             socket.emit('Lista_Modulos',lista_modulos);
           } else {
-            console.log('errro al cargar lista de modulos');
+            console.log('error al cargar lista de modulos');
           }
         });
       });
@@ -61,6 +61,10 @@ module.exports = {
         console.log('-------------------');
       });
     });
+  },
+  reporte_PIR: function (data) {
+    // console.log('en reporte pir ##################################',data);
+    io.sockets.emit('PUSH_Notificiacion_PIR',data);
   }
 }
 function Listar_Modulos() {

@@ -10,7 +10,6 @@ $(function() {
 		console.log('--- conectado a socket.io');
 	});
 	$socket.on('update_registered', function(data) {
-
 	});
 
 	$socket.on('message', function(data) {
@@ -24,6 +23,32 @@ $(function() {
 		document.getElementById(data.str_Codigo_Nomenclatura_Modulo).checked=((data.int_estado_switch_Modulo) ? true : false);
 		// $checkbox = document.getElementById(data.str_Codigo_Nomenclatura_Modulo);
 		// console.log($checkbox);
+	});
+	$socket.on('PUSH_Notificiacion_PIR', function(data) {
+		console.log("--------");
+		console.log(data);
+		// console.log(data.Codigo_Nomenclatura_Modulo);
+		// Codigo_Nomenclatura_Modulo
+		// nombre_Modulo
+		// estado_switch_Modulo
+		// fecha_Reporte_Deteccion_Pir
+		console.log("--------");
+		console.log('en push notificacion');
+		var html=$("<tr>\n" +
+		"<td>"+data.Codigo_Nomenclatura_Modulo+"</td>\n" +
+		"<td>"+data.nombre_Modulo+"</td>\n" +
+		"<td>"+data.estado_switch_Modulo+"</td>\n" +
+		"<td>"+data.fecha_Reporte_Deteccion_Pir+"</td>\n" +
+		"</tr>\n");
+		// console.log('---------------');
+		// console.log(html);
+		// console.log('---------------');
+		html.appendTo('#tbody_Notificaciones');
+		if ($('#tbody_Notificaciones')["0"].childElementCount>5) {
+			$('#tbody_Notificaciones tr:first').remove(); // remover la primera fila, la mas vieja
+		}
+		// console.log($('#tbody_Notificaciones')["0"].childElementCount); // count numero de elementos (filas en la tabla)
+		// $('#tbody_Notificaciones tr:first').remove();
 	});
 	$socket.on('UPDATE_Cambiar_Estado_Grupo', function(data) {
 		console.log(data);

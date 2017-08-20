@@ -34,6 +34,7 @@ Modulo.prototype.Registrar_Modulo = function(str_Codigo_Nomenclatura_Modulo, str
 				response({ boolean:false});
 			} else {
 				//console.log('Modulo insertada correctamente.');
+				client_mqtt.suscripcion(str_Codigo_Nomenclatura_Modulo);
 				response({ boolean:true});
 				conn.end();
 			}
@@ -123,6 +124,7 @@ Modulo.prototype.Eliminar_Modulo = function(str_Codigo_Nomenclatura_Modulo) {
 			} else {
 				//console.log('Modulo eliminado correctamente.');
 				conn.end();
+				client_mqtt.unsuscripcion(str_Codigo_Nomenclatura_Modulo);
 				response({boolean:true});
 			}
 		});
@@ -176,8 +178,9 @@ Modulo.prototype.Cambiar_Estado_Switch = function(str_Codigo_Nomenclatura_Modulo
 				response(false);
 			} else {
 				//console.log('Cambio Switch de Modulo realizado correctamente.');
-				console.log('emiiendo desde socket a mqtt topic',str_Codigo_Nomenclatura_Modulo, ' el valor ',int_estado_switch_Modulo);
+				console.log('emitiendo desde socket a mqtt topic',str_Codigo_Nomenclatura_Modulo, ' el valor ',int_estado_switch_Modulo);
 				client_mqtt.publish_mqtt(str_Codigo_Nomenclatura_Modulo,int_estado_switch_Modulo);
+
 				// ------- generando el reporte
 				var d=Date().split(' ');
 				var timestamp=d[0]+'-'+d[1]+'-'+d[2]+'-'+d[3]+' '+d[4];
@@ -204,5 +207,63 @@ Modulo.prototype.Cambiar_Estado_Switch = function(str_Codigo_Nomenclatura_Modulo
 		});
 	});
 };
+Modulo.prototype.Reportar_Deteccion_PIR = function(str_Codigo_Nomenclatura_Modulo) {
+	return new Promise(function (response, reject){
+		//console.log(str_Codigo_Nomenclatura_Modulo);
+		// ------- generando el reporte
+		var conf_mysql = require('../config_services/conf_mysql');
+		var conn=mysql.createConnection(conf_mysql);
+		// console.log('en fun res');
+		conn.connect();
+		ObjA = {
+			Codigo_Nomenclatura_Modulo: str_Codigo_Nomenclatura_Modulo
+		};
+		conn.query('SELECT  nombre_Modulo, estado_switch_Modulo FROM Modulo WHERE ? LIMIT 1', ObjA, function(err, rows, fields) {
+			if (err) {
+				console.log('error en la consulta del modulo para pir deteccion');
+				conn.end();
+				response(false);
+			} else {
+				if (rows.length) {
+					console.log('Modulo Consultado correctamente.');
+					// console.log(rows);
+					var d=Date().split(' ');
+					var timestamp=d[0]+'-'+d[1]+'-'+d[2]+'-'+d[3]+' '+d[4];
 
+					var ObjB = {
+						Codigo_Nomenclatura_Modulo: str_Codigo_Nomenclatura_Modulo,
+						nombre_Modulo: rows[0].nombre_Modulo,
+						estado_switch_Modulo: rows[0].estado_switch_Modulo,
+						fecha_Reporte_Deteccion_Pir: timestamp
+					};
+
+					ObjC = {
+						fecha_Reporte_Deteccion_Pir: timestamp,
+						estado_switch_actual: rows[0].estado_switch_Modulo,
+						Modulo_Codigo_Nomenclatura_Modulo: str_Codigo_Nomenclatura_Modulo,
+					};
+					//console.log(ObjC);
+					conn.query('INSERT INTO reporte_deteccion_pir SET ?', ObjC, function(err, rows, fields) {
+						if (err) {
+							console.log('error en Insert Reporte deteccion PIR',err);
+							//console.log(err);
+							conn.end();
+							response(false);
+						} else {
+							// console.log('Insert reporte_deteccion_pir correctamente');
+							conn.end();
+							var $io = require('../config_services/io_socket').reporte_PIR(ObjB);
+							response(true);
+						}
+					});
+				}else{
+					console.log('false en reporte_deteccion_pir select modulo');
+					response(false);
+					conn.end();
+				}
+			}
+		});
+		// -------
+	});
+};
 module.exports = Modulo;
