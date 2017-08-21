@@ -4,7 +4,7 @@ block content
   .row
     .col-lg-12
       h1.page-header(align='center')
-        | Des-Suscribir Modulos a Grupo de Modulos
+        | Suscribir Modulos a Grupo de Modulos
     if info_error != undefined && info_error.length
       .col-lg-12
         .alert.alert-warning
@@ -21,7 +21,7 @@ block content
         .panel-heading
           h3.panel-title Consultar Grupo de Modulos:
         .panel-body
-          form(role='form',action='Eliminar_Modulo_Grupo_Modulo', method='post')
+          form(role='form',action='Suscribir_Modulo_Grupo_Modulo', method='post')
             .row
               .col-lg-12
                 p.panel-title Especifique el Grupo de Modulos al que desea suscribir Modulos.
@@ -49,14 +49,11 @@ block content
             h3.panel-title Tabla de Edicion:
               strong  #{nombre_Grupo_Modulos}
           .panel-body
-            form(role='form', action='DELETE_Eliminar_Modulo_Grupo_Modulo', method='post')
+            form(role='form', action='PUT_Suscribir_Modulo_Grupo_Modulo', method='post')
               .col-lg-6
                 if suscritos != undefined && suscritos != null
                   h2
                     strong Suscritos al Grupo
-                    input.form-control(type='hidden', name='id_Grupo_Modulos',value='#{id_Grupo_Modulos}')
-                    input.form-control(type='hidden', name='nombre_Grupo_Modulos',value='#{nombre_Grupo_Modulos}')
-                    input.form-control(type='hidden', name='suscritos',value='ESP_OPEN')
                   .table-responsive
                     table.table.table-hover
                       thead
@@ -68,14 +65,18 @@ block content
                           tr
                             td= item.Codigo_Nomenclatura_Modulo
                             td
-                              .form-group
-                                .checkbox
-                                  label
-                                    input(type='checkbox' name='suscritos' value=item.Codigo_Nomenclatura_Modulo)
+                              fieldset(disabled='')
+                                .form-group
+                                  .checkbox
+                                    label
+                                      input(type='checkbox' checked='')
               .col-lg-6
                 if no_suscritos != undefined && no_suscritos != null
                   h2
                     strong No Suscritos al Grupo
+                    input.form-control(type='hidden', name='id_Grupo_Modulos',value=id_Grupo_Modulos)
+                    input.form-control(type='hidden', name='nombre_Grupo_Modulos',value=nombre_Grupo_Modulos)
+                    input.form-control(type='hidden', name='suscritos',value='ESP_OPEN')
                   .table-responsive
                     table.table.table-hover
                       thead
@@ -87,11 +88,10 @@ block content
                           tr
                             td= item.Codigo_Nomenclatura_Modulo
                             td
-                              fieldset(disabled='')
-                                .form-group
-                                  .checkbox
-                                    label
-                                      input(type='checkbox' checked='')
+                              .form-group
+                                .checkbox
+                                  label
+                                    input(type='checkbox' name='suscritos' value=item.Codigo_Nomenclatura_Modulo)
               .col-lg-12
                 .col-lg-6
                   button.btn.btn-success(type='submit')

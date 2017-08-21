@@ -42,19 +42,19 @@ block content
             .col-lg-6
               .form-group
                 label(for='disabledSelect') Identificacion:
-                input.form-control(type='hidden', name='Identificacion', value='#{identificacion_Persona}')
-                input#disabledInput.form-control(disabled='', name='Identificacion',value='#{identificacion_Persona}')
+                input.form-control(type='hidden', name='Identificacion', value=identificacion_Persona)
+                input#disabledInput.form-control(disabled='', name='Identificacion',value=identificacion_Persona)
               .form-group
                 label Nombres:
-                input.form-control(placeholder='Nombre(s)', required='',name='Nombres',value='#{nombres_Persona}')
+                input.form-control(placeholder='Nombre(s)', required='',name='Nombres',value=nombres_Persona)
               .form-group
                 label Apellidos:
-                input.form-control(placeholder='Apellido(s)', required='',name='Apellidos',value='#{apellidos_Persona}')
+                input.form-control(placeholder='Apellido(s)', required='',name='Apellidos',value=apellidos_Persona)
               .form-group
                 label Usuario:
                 .form-group.input-group
                   span.input-group-addon @
-                  input.form-control(type='text', placeholder='Username',required='',name='Usuario',value='#{usuario_Persona}')
+                  input.form-control(type='text', placeholder='Username',required='',name='Usuario',value=usuario_Persona)
                 label Password:
                 .form-group.input-group
                   span.input-group-addon P

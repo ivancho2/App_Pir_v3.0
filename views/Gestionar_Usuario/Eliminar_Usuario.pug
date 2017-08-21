@@ -4,7 +4,7 @@ block content
   .row
     .col-lg-12
       h1.page-header(align='center')
-        | Consultar Usuario
+        | Eliminar Usuario
     if info_error != undefined && info_error.length
       .col-lg-12
         .alert.alert-warning
@@ -21,7 +21,7 @@ block content
         .panel-heading
           h3.panel-title Datos del Usuario a Consultar:
         .panel-body
-          form(role='form',action='Consultar_Usuario', method='post')
+          form(role='form',action='Eliminar_Usuario', method='post')
             .col-lg-12
               .form-group
                 label Identificacion:
@@ -38,23 +38,26 @@ block content
         .panel-heading
           h3.panel-title Usuario Consultado:
         .panel-body
-          fieldset(disabled='')
+          form(role='form',action='DELETE_Eliminar_Usuario', method='post')
             .col-lg-6
               .form-group
                 label(for='disabledSelect') Identificacion:
-                input#disabledInput.form-control(type='text', disabled='',value='#{identificacion_Persona}')
+                input#disabledInput.form-control(type='text', disabled='',value=identificacion_Persona)
+                input.form-control(type='hidden', name='Identificacion', value=identificacion_Persona)
               .form-group
                 label(for='disabledSelect') Nombres:
-                input#disabledInput.form-control(type='text', disabled='',value='#{nombres_Persona}')
+                input#disabledInput.form-control(type='text', disabled='',value=nombres_Persona)
               .form-group
                 label(for='disabledSelect') Apellidos:
-                input#disabledInput.form-control(type='text', disabled='',value='#{apellidos_Persona}')
+                input#disabledInput.form-control(type='text', disabled='',value=apellidos_Persona)
             .col-lg-6
               .form-group
                 label(for='disabledSelect') Usuario:
                 .form-group.input-group
                   span.input-group-addon @
-                  input#disabledInput.form-control(type='text', disabled='',value='#{usuario_Persona}')
+                  input#disabledInput.form-control(type='text', disabled='',value=usuario_Persona)
               .form-group
                 label(for='disabledSelect') Rol de Usuario
-                input#disabledInput.form-control(type='text', disabled='',value='#{Rol_Persona_id_Rol_Persona}')
+                input#disabledInput.form-control(type='text', disabled='',value=Rol_Persona_id_Rol_Persona)
+            .col-lg-6
+              button.btn.btn-success(type='submit') Confirmar e Eliminar Usuario

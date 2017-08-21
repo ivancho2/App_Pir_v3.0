@@ -4,7 +4,7 @@ block content
   .row
     .col-lg-12
       h1.page-header(align='center')
-        | Eliminar Grupo de Modulos
+        | Modificar Grupo de Modulos
     if info_error != undefined && info_error.length
       .col-lg-12
         .alert.alert-warning
@@ -19,9 +19,9 @@ block content
     .col-lg-6
       .panel.panel-green
         .panel-heading
-          h3.panel-title Consultar datos del Grupo de Modulos a Eliminar:
+          h3.panel-title Consultar datos del Grupo de Modulos a Modificar:
         .panel-body
-          form(role='form',action='Eliminar_Grupo_Modulo', method='post')
+          form(role='form',action='Modificar_Grupo_Modulo', method='post')
             .col-lg-12
               .form-group
                 label Nombre del Grupo de Modulos (Unico):
@@ -36,34 +36,38 @@ block content
     .col-lg-12
       .panel.panel-green
         .panel-heading
-          h3.panel-title Datos: Grupo de Modulos Consultado:
+          h3.panel-title Datos: Grupo de Modulos Consultado
         .panel-body
-          form(role='form',action='DELETE_Eliminar_Grupo_Modulo', method='post')
+          form(role='form', action='PUT_Modificar_Grupo_Modulo', method='post')
             .col-lg-6
               .form-group
                 label Nombre del Grupo de Modulos:
-                input.form-control(disabled='', name='nombre_Grupo_Modulos',value='#{nombre_Grupo_Modulos}',required='')
+                input.form-control(name='nombre_Grupo_Modulos',value=nombre_Grupo_Modulos}',required='')
               .form-group
-                label Descripcion_Grupo_Modulos:
-                textarea.form-control(disabled='', name='descripcion_Grupo_Modulos', rows='3',required='')
+                label descripcion_Grupo_Modulos:
+                textarea.form-control(name='descripcion_Grupo_Modulos', rows='3',required='')
                   | #{descripcion_Grupo_Modulos}
               .form-group
                 label(for='disabledSelect') Codigo del Grupo de Modulos:
-                input#disabledInput.form-control(disabled='', value='#{id_Grupo_Modulos}')
-                input.form-control(type='hidden', name='id_Grupo_Modulos',value='#{id_Grupo_Modulos}')
+                input#disabledInput.form-control(disabled='',value=id_Grupo_Modulos)
+                input.form-control(type='hidden', name='id_Grupo_Modulos',value=id_Grupo_Modulos)
+              .form-group
+                label(for='disabledSelect') Registrado por el Usuario ID:
+                input#disabledInput.form-control(disabled='',value=Persona_identificacion_Persona)
             .col-lg-6
               .form-group
-                label(for='disabledSelect') Estado actual del Modulo (Switch):
+                label Estado actual del Modulo (Switch):
                 .col-lg-12
                   label.switch
                     if estado_switch_Grupo_Modulos==1
-                      input.inputdemo(type='checkbox', disabled='', checked='')
+                      input.inputdemo(disabled='',name='estado_switch_Grupo_Modulos',type='checkbox',  checked='')
                     else
-                      input.inputdemo( disabled='',type='checkbox')
+                      input.inputdemo(disabled='',name='estado_switch_Grupo_Modulos',type='checkbox')
                     .slider.round
-              .form-group
-                label(for='disabledSelect') Codigo del Registrador (Usuario):
-                input#disabledInput.form-control( disabled='',value='#{Persona_identificacion_Persona}')
-            .col-lg-6
-              button.btn.btn-success(type='submit')
-                |  Confirmar y Eliminar
+              .col-lg-6
+                button.btn.btn-success(type='submit')
+                  |  Confirmar y Enviar
+              .col-lg-6
+                button.btn.btn-warning(type='reset')
+                  i.fa.fa-edit
+                  |   Restaurar Todo

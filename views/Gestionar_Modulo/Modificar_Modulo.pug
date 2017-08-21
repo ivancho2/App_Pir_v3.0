@@ -42,14 +42,14 @@ block content
             .col-lg-6
               .form-group
                 label(for='disabledSelect') Codigo_Nomenclatura:
-                input#disabledInput.form-control(disabled='', value='#{Codigo_Nomenclatura_Modulo}')
-                input.form-control(type='hidden', name='Codigo_Nomenclatura_Modulo',value='#{Codigo_Nomenclatura_Modulo}')
+                input#disabledInput.form-control(disabled='', value=Codigo_Nomenclatura_Modulo)
+                input.form-control(type='hidden', name='Codigo_Nomenclatura_Modulo',value=Codigo_Nomenclatura_Modulo)
               .form-group
                 label(for='disabledSelect') Registrado por el Usuario ID:
-                input.form-control(disabled='',value='#{Persona_identificacion_Persona}')
+                input.form-control(disabled='',value=Persona_identificacion_Persona)
               .form-group
                 label Nombre del Modulo:
-                input.form-control(name='nombre_Modulo',value='#{nombre_Modulo}',required='')
+                input.form-control(name='nombre_Modulo',value=nombre_Modulo}',required='')
               .form-group
                 label Descripcion:
                 textarea.form-control(name='descripcion_Modulo', rows='3',required='')

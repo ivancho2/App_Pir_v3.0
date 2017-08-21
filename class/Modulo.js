@@ -190,10 +190,11 @@ Modulo.prototype.Cambiar_Estado_Switch = function(str_Codigo_Nomenclatura_Modulo
 					Modulo_Codigo_Nomenclatura_Modulo: str_Codigo_Nomenclatura_Modulo,
 					Persona_identificacion_Persona: int_Persona_identificacion_Persona
 				};
+				console.log(ObjA);
 				conn.query('INSERT INTO reporte_cambio_estado_modulo SET ?', ObjA, function(err, rows, fields) {
 					if (err) {
 						console.log('error en Insert Reporte Cambio Sw Modulo');
-						//console.log(err);
+						console.log(err);
 						conn.end();
 						response(false);
 					} else {
